@@ -3,7 +3,7 @@
 ## By: Eric Vela and Charlie Liu
 
 ### Google Team Drive
-- https://drive.google.com/drive/u/1/folders/0ALj2Gbsh4zoAUk9PVA
+- https://drive.google.com/drive/folders/1N5ioazf93_8n1m5JWb0JGyBmbrlLGtWv?usp=sharing
 
 ### Relational Database Diagram:
 - (Link)
