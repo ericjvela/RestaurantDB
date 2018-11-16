@@ -2,13 +2,17 @@
 
 ## By: Eric Vela and Charlie Liu
 
+### Google Team Drive
+- https://drive.google.com/drive/u/1/folders/0ALj2Gbsh4zoAUk9PVA
+
+### Relational Database Diagram:
+- (Link)
+
 ### Programs used:
 - NetBeans IDE (Java)
 - JDBC
 - MySQL
-
-### Relational Database Diagram:
-- (Link)
+- Python
 
 ### Project	Details:
 1. Print/display records	from	your	database/tables.
