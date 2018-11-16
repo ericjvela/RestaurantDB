@@ -1,16 +1,16 @@
-#Restaurant Database
+# Restaurant Database
 
-##By: Eric Vela and Charlie Liu
+## By: Eric Vela and Charlie Liu
 
-###Programs used:
+### Programs used:
 - NetBeans IDE (Java)
 - JDBC
 - MySQL
 
-###Relational Database Diagram:
+### Relational Database Diagram:
 - (Link)
 
-###Project	Details:
+### Project	Details:
 1. Print/display records	from	your	database/tables.
 2. Query for	data/results	with	various	parameters/filters
 3. Create	a	new	record
