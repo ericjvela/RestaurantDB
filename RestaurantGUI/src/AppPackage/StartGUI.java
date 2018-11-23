@@ -5,11 +5,14 @@
  */
 package AppPackage;
 
+import java.sql.*;
+
 /**
  *
  * @author ericv
  */
 public class StartGUI extends javax.swing.JFrame {
+
 
     /**
      * Creates new form StartGUI
@@ -28,20 +31,53 @@ public class StartGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
+        DisplayRecordsButton = new javax.swing.JButton();
+        SearchCriteriaButton = new javax.swing.JButton();
+        CreateEntryButton = new javax.swing.JButton();
+        DeleteRecordsButton = new javax.swing.JButton();
+        UpdateRecordsButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("YEET");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 136, 140, 100));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setText("Landing Page");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, -1, -1));
+
+        DisplayRecordsButton.setText("Display Records");
+        DisplayRecordsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DisplayRecordsButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(DisplayRecordsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 180, 50));
+
+        SearchCriteriaButton.setText("Search Criteria");
+        getContentPane().add(SearchCriteriaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 180, 50));
+
+        CreateEntryButton.setText("Create Entry");
+        getContentPane().add(CreateEntryButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 180, 50));
+
+        DeleteRecordsButton.setText("Delete Records");
+        getContentPane().add(DeleteRecordsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 250, 180, 50));
+
+        UpdateRecordsButton.setText("Update Records");
+        getContentPane().add(UpdateRecordsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 310, 180, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void DisplayRecordsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisplayRecordsButtonActionPerformed
+//Link to new Jframe
+        RestaurantCRUD RestaurantCRUD = new RestaurantCRUD();
+        RestaurantCRUD.setVisible(true);
+    }//GEN-LAST:event_DisplayRecordsButtonActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -74,6 +110,15 @@ public class StartGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CreateEntryButton;
+    private javax.swing.JButton DeleteRecordsButton;
+    private javax.swing.JButton DisplayRecordsButton;
+    private javax.swing.JButton SearchCriteriaButton;
+    private javax.swing.JButton UpdateRecordsButton;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
+
+    private void setVisisble(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
