@@ -188,7 +188,8 @@ public class RestaurantAdd extends javax.swing.JFrame {
         // TODO add your handling code here:
         String url = "jdbc:mysql://DESKTOP-Q1NBULV:3306/restaurant_db?zeroDateTimeBehavior=convertToNull";
         String user = "charlie";
-        String password = "myPassword";        
+        String password = "myPassword";
+        
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(url, user, password);
