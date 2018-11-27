@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ericv/Documents/NetBeansProjects/RestaurantGUI/src/AppPackage/RestaurantUpdate.java</file>
-            <file>file:/C:/Users/ericv/Documents/NetBeansProjects/RestaurantGUI/src/AppPackage/StartGUI.java</file>
-            <file>file:/C:/Users/ericv/Documents/NetBeansProjects/RestaurantGUI/src/AppPackage/RestaurantAdd.java</file>
-            <file>file:/C:/Users/ericv/Documents/NetBeansProjects/RestaurantGUI/src/AppPackage/RestaurantDisplay.java</file>
+            <file>file:/C:/Users/itsch/Documents/RestaurantDB/RestaurantDB/RestaurantGUI/src/AppPackage/Restaurant.java</file>
+            <file>file:/C:/Users/itsch/Documents/RestaurantDB/RestaurantDB/RestaurantGUI/src/AppPackage/StartGUI.java</file>
+            <file>file:/C:/Users/itsch/Documents/RestaurantDB/RestaurantDB/RestaurantGUI/src/AppPackage/RestaurantUpdate.java</file>
+            <file>file:/C:/Users/itsch/Documents/RestaurantDB/RestaurantDB/RestaurantGUI/src/AppPackage/RestaurantDisplay.java</file>
+            <file>file:/C:/Users/itsch/Documents/RestaurantDB/RestaurantDB/RestaurantGUI/src/AppPackage/RestaurantCRUD.java</file>
         </group>
     </open-files>
 </project-private>

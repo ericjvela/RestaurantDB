@@ -186,10 +186,9 @@ public class RestaurantAdd extends javax.swing.JFrame {
 
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
         // TODO add your handling code here:
-        String url = "jdbc:mysql://localhost:3306/restaurantdb?serverTimezone=America/Los_Angeles";
-        String user = "root";
-        String password = "En3rgyyorange30!";
-        
+        String url = "jdbc:mysql://DESKTOP-Q1NBULV:3306/restaurant_db?zeroDateTimeBehavior=convertToNull";
+        String user = "charlie";
+        String password = "myPassword";        
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(url, user, password);

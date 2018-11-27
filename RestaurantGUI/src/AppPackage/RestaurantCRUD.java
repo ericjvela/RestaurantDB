@@ -22,9 +22,9 @@ public class RestaurantCRUD extends javax.swing.JFrame {
     }
     
     private void DisplayTable() { 
-        String url = "jdbc:mysql://localhost:3306/restaurantdb?serverTimezone=America/Los_Angeles";
-        String user = "root";
-        String password = "En3rgyyorange30!";
+        String url = "jdbc:mysql://DESKTOP-Q1NBULV:3306/restaurant_db?zeroDateTimeBehavior=convertToNull";
+        String user = "charlie";
+        String password = "myPassword";
         
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
