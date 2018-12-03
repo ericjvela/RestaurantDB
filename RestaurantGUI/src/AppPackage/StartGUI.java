@@ -33,7 +33,8 @@ public class StartGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         DisplayRecordsButton = new javax.swing.JButton();
         UpdateRestaurantButton = new javax.swing.JButton();
-        AddRestaurantButton1 = new javax.swing.JButton();
+        AddRestaurantButton = new javax.swing.JButton();
+        SearchRestaurantButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -58,32 +59,48 @@ public class StartGUI extends javax.swing.JFrame {
         });
         getContentPane().add(UpdateRestaurantButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 180, 50));
 
-        AddRestaurantButton1.setText("Add Restaurant");
-        AddRestaurantButton1.addActionListener(new java.awt.event.ActionListener() {
+        AddRestaurantButton.setText("Add Restaurant");
+        AddRestaurantButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddRestaurantButton1ActionPerformed(evt);
+                AddRestaurantButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(AddRestaurantButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 180, 50));
+        getContentPane().add(AddRestaurantButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 180, 50));
+
+        SearchRestaurantButton.setText("Search Restaurants");
+        SearchRestaurantButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchRestaurantButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(SearchRestaurantButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 180, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void DisplayRecordsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisplayRecordsButtonActionPerformed
 //Link to new Jframe
-        RestaurantDisplay RestaurantDisplay = new RestaurantDisplay();
+        RestaurantDisplay RestaurantDisplay = new RestaurantDisplay("SELECT * FROM restaurant", new String[0]);
         RestaurantDisplay.setVisible(true);
     }//GEN-LAST:event_DisplayRecordsButtonActionPerformed
 
     private void UpdateRestaurantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateRestaurantButtonActionPerformed
         // TODO add your handling code here:
-        RestaurantAdd RestaurantAdd = new RestaurantAdd();
-        RestaurantAdd.setVisible(true);
+        RestaurantUpdate restaurantUpdate = new RestaurantUpdate();
+        restaurantUpdate.setVisible(true);
     }//GEN-LAST:event_UpdateRestaurantButtonActionPerformed
 
-    private void AddRestaurantButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRestaurantButton1ActionPerformed
+    private void AddRestaurantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRestaurantButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_AddRestaurantButton1ActionPerformed
+        RestaurantAdd restaurantAdd = new RestaurantAdd();
+        restaurantAdd.setVisible(true);
+    }//GEN-LAST:event_AddRestaurantButtonActionPerformed
+
+    private void SearchRestaurantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchRestaurantButtonActionPerformed
+        // TODO add your handling code here:
+        RestaurantSearch restaurantSearch = new RestaurantSearch();
+        restaurantSearch.setVisible(true);
+    }//GEN-LAST:event_SearchRestaurantButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,8 +139,9 @@ public class StartGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddRestaurantButton1;
+    private javax.swing.JButton AddRestaurantButton;
     private javax.swing.JButton DisplayRecordsButton;
+    private javax.swing.JButton SearchRestaurantButton;
     private javax.swing.JButton UpdateRestaurantButton;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

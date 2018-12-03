@@ -6,6 +6,7 @@
 package AppPackage;
 import net.proteanit.sql.DbUtils;
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 /**
  *
@@ -13,10 +14,15 @@ import javax.swing.JOptionPane;
  */
 public class RestaurantDisplay extends javax.swing.JFrame {
 
+    private String statement;
+    private String[] params;
+    
     /**
      * Creates new form RestaurantDisplay
      */
-    public RestaurantDisplay() {
+    public RestaurantDisplay(String statement, String[] params) {
+        this.statement = statement;
+        this.params = params;
         initComponents();
         DisplayTable();
     }
@@ -29,7 +35,11 @@ public class RestaurantDisplay extends javax.swing.JFrame {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(url, user, password);
-            PreparedStatement pst = conn.prepareStatement("SELECT * FROM restaurant");
+            PreparedStatement pst = conn.prepareStatement(statement);
+            for (int i = 1; i <= params.length; ++i)
+            {
+                pst.setString(i, params[i - 1]);
+            }
 
             ResultSet rs = pst.executeQuery();
             
@@ -158,11 +168,11 @@ public class RestaurantDisplay extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RestaurantDisplay().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new RestaurantDisplay().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
