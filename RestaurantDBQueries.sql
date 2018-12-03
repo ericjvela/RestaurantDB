@@ -2,10 +2,13 @@
 
 #1. Display All Restaurants
 #--------------------------
+START TRANSACTION;
 SELECT * FROM restaurant
+COMMIT;
 
 #2 Search Restaurant (Sub query)
 #--------------------------
+START TRANSACTION;
 SELECT *
 FROM restaurant AS r
 INNER JOIN restaurant_type AS rt
@@ -14,11 +17,13 @@ WHERE r.RESTAURANT_NAME = 'Calitacos' AND
 	  r.CITY = 'Orange' AND
       r.STATE = 'CA' AND
       rt.CATEGORY = 'Italian'
+COMMIT;
 
 #3. Display Restaurant Features
 #----------------------------
-SELECT r.RESTAURANT_ID, 
-	   r.RESTAURANT_NAME, 
+START TRANSACTION;
+SELECT r.RESTAURANT_ID,
+	   r.RESTAURANT_NAME,
        rt.CATEGORY,
        f. ORDER_DELIVERY,
 	   f.ORDER_TAKEOUT,
@@ -51,9 +56,11 @@ INNER JOIN hours_of_operation AS h
 ON f.RESTAURANT_ID = h.RESTAURANT_ID
 INNER JOIN restaurant_type AS rt
 ON h.RESTAURANT_ID = rt.RESTAURANT_ID
+COMMIT;
 
 #4. Display Reviews
 #--------------------------------
+START TRANSACTION;
 SELECT rd.RESTAURANT_ID,
 	   rev.REVIEW_ID,
        rev.RATING_GIVEN,
@@ -61,6 +68,7 @@ SELECT rd.RESTAURANT_ID,
 FROM reviews_directory AS rd
 INNER JOIN reviews AS rev
 ON rd.REVIEW_ID = rev.REVIEW_ID
+COMMIT;
 
 #5. Display Restaurant Menus
 #---------------------------------
@@ -69,8 +77,21 @@ ON rd.REVIEW_ID = rev.REVIEW_ID
 #6. Insert Restaurant
 #------------------------
 #Already implemennted
+START TRANSACTION;
+INSERT INTO restaurant(RESTAURANT_ID,
+											RESTAURANT_NAME,
+											ADDRESS,
+											CITY,
+											STATE,
+											PHONE,
+											WEBSITE,
+											PRICE_RATING
+											)
+VALUES(?,?,?,?,?,?,?,?)
+COMMIT;
 
 #7. Insert Restaurant features
+START TRANSACTION;
 INSERT INTO features(RESTAURANT_ID,
 					 ORDER_DELIVERY,
                      ORDER_TAKEOUT,
@@ -82,8 +103,10 @@ INSERT INTO features(RESTAURANT_ID,
                      TAKES_RESERVATIONS
                      #Whatever is left
 VALUES(#however many ?, ?, ?, ?, ...)
+COMMIT;
 
 #8. Insert Hours of Operation
+START TRANSACTION;
 INSERT INTO hours_of_operation(RESTAURANT_ID,
 							   MON_START,
                                MON_END,
@@ -99,81 +122,106 @@ INSERT INTO hours_of_operation(RESTAURANT_ID,
                                SAT_END,
                                SUN_START,
                                SUN_END)
-VALUES (7, 
-		'9:00', 
-        '21:00', 
-        '9:00', 
-        '21:00', 
-        '9:00', 
-        '21:00', 
-        '9:00', 
-        '21:00', 
-        '9:00', 
+VALUES (7,
+		'9:00',
         '21:00',
-        '9:00', 
+        '9:00',
         '21:00',
-        '9:00', 
+        '9:00',
+        '21:00',
+        '9:00',
+        '21:00',
+        '9:00',
+        '21:00',
+        '9:00',
+        '21:00',
+        '9:00',
         '21:00')
-        
+COMMIT;
+
 #9. Insert Review
 #PROMPT FOR RESTAURANT_ID, RATING_GIVEN OUT OF 5 or 10, POSTED_REVIEW is their explanation
+#still need to finish
+
+START TRANSACTION;
 INSERT INTO reviews (RATING_GIVEN, POSTED_REVIEW)
 VALUES(4, 'It was great!')
 #restaurant id populated with user input
 INSERT INTO reviews_directory(RESTAURANT_ID, REVIEW_ID)
 VALUES(6, #most recent review_ID)
+COMMIT;
 
 #10. Insert Menu (acknowledging the items table has all of the listed items needed
 #prompt for restaurant ID
 #menu ID should be AutoIncremented
+#still need to finish
+START TRANSACTION;
 INSERT INTO menu(RESTAURANT_ID)
 VALUES(6)
+COMMIT;
 
 
 #Prompt for menu_id, add item_id endlessly
+#still need to finish
+START TRANSACTION;
 INSERT INTO menu_items(MENU_ID, ITEM_ID)
 VALUES(#do not know how we would get the menu_id ,#Item they seelcted)
+COMMIT;
 
 #11. Update Restaurant
+
+START TRANSACTION;
 UPDATE restaurant
 SET RESTAURANT_NAME = ?
 WHERE RESTAURANT_ID = ?
+COMMIT;
 
+START TRANSACTION;
 UPDATE restaurant
 SET ADDRESS = ?
 WHERE RESTAURANT_ID = ?
+COMMIT;
 
+START TRANSACTION;
 UPDATE restaurant
 SET CITY = ?
 WHERE RESTAURANT_ID = ?
+COMMIT;
 
+START TRANSACTION;
 UPDATE restaurant
 SET STATE = ?
 WHERE RESTAURANT_ID = ?
+COMMIT;
 
+START TRANSACTION;
 UPDATE restaurant
 SET PHONE = ?
 WHERE RESTAURANT_ID = ?
+COMMIT;
 
+START TRANSACTION;
 UPDATE restaurant
 SET PRICE_RATING = ?
 WHERE RESTAURANT_ID = ?
+COMMIT;
+
 
 #15. Delete Restaurant
+START TRANSACTION;
 DELETE FROM restaurant
 WHERE RESTAURANT_ID = ?
+COMMIT;
 
-#19. Somehow use a transaction
 #20. Export as csv
 
 #21. Group by clause
-#Return items of a menu by the item in alphabetical order
-SELECT menu.RESTAURANT_ID,
-		mi.MENU_ID, 
-		mi.ITEM_ID
-FROM menu_items AS mi
-INNER JOIN menu AS menu
-ON mi.MENU_ID = menu.MENU_ID
-WHERE MENU_ID = ?
-#22. Include database views
+#Return 10 most frequent restaurants
+START TRANSACTION;
+SELECT COUNT(RESTAURANT_ID) as Quantity, RESTAURANT_NAME
+FROM restaurant
+GROUP BY RESTAURANT_NAME, RESTAURANT_ID
+LIMIT 10;
+COMMIT;
 
+#22. Include database views
