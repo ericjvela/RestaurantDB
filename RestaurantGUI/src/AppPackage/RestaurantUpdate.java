@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
  * @author ericv
  */
 public class RestaurantUpdate extends javax.swing.JFrame {
+    private final String TAG = this.getClass().getSimpleName();
 
     /**
      * Creates new form RestaurantUpdate
@@ -209,7 +210,7 @@ public class RestaurantUpdate extends javax.swing.JFrame {
         }
         catch (Exception e)
         {
-            JOptionPane.showMessageDialog(null,e);
+            JOptionPane.showMessageDialog(null,TAG + e);
         }
     }//GEN-LAST:event_UpdateButtonActionPerformed
 

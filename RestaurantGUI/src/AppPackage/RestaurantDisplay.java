@@ -15,12 +15,14 @@ import javax.swing.JOptionPane;
 public class RestaurantDisplay extends javax.swing.JFrame {
 
     private String statement;
-    private String[] params;
+    private Param[] params;
+    
+    private final String TAG = this.getClass().getSimpleName();
     
     /**
      * Creates new form RestaurantDisplay
      */
-    public RestaurantDisplay(String statement, String[] params) {
+    public RestaurantDisplay(String statement, Param[] params) {
         this.statement = statement;
         this.params = params;
         initComponents();
@@ -38,8 +40,26 @@ public class RestaurantDisplay extends javax.swing.JFrame {
             PreparedStatement pst = conn.prepareStatement(statement);
             for (int i = 1; i <= params.length; ++i)
             {
-                pst.setString(i, params[i - 1]);
+                //update this if you add more types
+                switch(params[i - 1].getType())
+                {
+                    case Param.STRING:
+                        pst.setString(i, params[i - 1].getString());
+                        break;
+                    case Param.INT:
+                        pst.setInt(i, params[i - 1].getInt());
+                        break;
+                    case Param.DOUBLE:
+                        pst.setDouble(i, params[i - 1].getDouble());
+                        break;
+                    case Param.FLOAT:
+                        pst.setFloat(i, params[i - 1].getFloat());
+                        break;
+                }
+             
             }
+            
+            System.out.println(TAG + ": Query: " + pst.toString());
 
             ResultSet rs = pst.executeQuery();
             
@@ -49,7 +69,7 @@ public class RestaurantDisplay extends javax.swing.JFrame {
         }
         catch (Exception e)
         {
-            JOptionPane.showMessageDialog(null,e);
+            JOptionPane.showMessageDialog(null,TAG + e);
         }
     }
 

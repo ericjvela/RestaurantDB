@@ -12,6 +12,7 @@ import java.sql.*;
  * @author ericv
  */
 public class StartGUI extends javax.swing.JFrame {
+    private final String TAG = this.getClass().getSimpleName();
 
 
     /**
@@ -80,7 +81,7 @@ public class StartGUI extends javax.swing.JFrame {
 
     private void DisplayRecordsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisplayRecordsButtonActionPerformed
 //Link to new Jframe
-        RestaurantDisplay RestaurantDisplay = new RestaurantDisplay("SELECT * FROM restaurant", new String[0]);
+        RestaurantDisplay RestaurantDisplay = new RestaurantDisplay("SELECT * FROM restaurant", new Param[0]);
         RestaurantDisplay.setVisible(true);
     }//GEN-LAST:event_DisplayRecordsButtonActionPerformed
 

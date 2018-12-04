@@ -35,12 +35,7 @@ import javax.persistence.Transient;
     , @NamedQuery(name = "Restaurant.findByState", query = "SELECT r FROM Restaurant r WHERE r.state = :state")
     , @NamedQuery(name = "Restaurant.findByPhone", query = "SELECT r FROM Restaurant r WHERE r.phone = :phone")
     , @NamedQuery(name = "Restaurant.findByWebsite", query = "SELECT r FROM Restaurant r WHERE r.website = :website")
-    , @NamedQuery(name = "Restaurant.findByNumOfReviews", query = "SELECT r FROM Restaurant r WHERE r.numOfReviews = :numOfReviews")
-    , @NamedQuery(name = "Restaurant.findByAverageReview", query = "SELECT r FROM Restaurant r WHERE r.averageReview = :averageReview")
-    , @NamedQuery(name = "Restaurant.findByOpenHoursPerWeek", query = "SELECT r FROM Restaurant r WHERE r.openHoursPerWeek = :openHoursPerWeek")
-    , @NamedQuery(name = "Restaurant.findByPriceRating", query = "SELECT r FROM Restaurant r WHERE r.priceRating = :priceRating")
-    , @NamedQuery(name = "Restaurant.findByMenuId", query = "SELECT r FROM Restaurant r WHERE r.menuId = :menuId")
-    , @NamedQuery(name = "Restaurant.findByReviewsId", query = "SELECT r FROM Restaurant r WHERE r.reviewsId = :reviewsId")})
+    , @NamedQuery(name = "Restaurant.findByPriceRating", query = "SELECT r FROM Restaurant r WHERE r.priceRating = :priceRating")})
 public class Restaurant implements Serializable {
 
     @Transient
@@ -65,19 +60,8 @@ public class Restaurant implements Serializable {
     private String phone;
     @Column(name = "WEBSITE")
     private String website;
-    @Column(name = "NUM_OF_REVIEWS")
-    private Integer numOfReviews;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "AVERAGE_REVIEW")
-    private BigDecimal averageReview;
-    @Column(name = "OPEN_HOURS_PER_WEEK")
-    private BigDecimal openHoursPerWeek;
     @Column(name = "PRICE_RATING")
     private Short priceRating;
-    @Column(name = "MENU_ID")
-    private Integer menuId;
-    @Column(name = "REVIEWS_ID")
-    private Integer reviewsId;
 
     public Restaurant() {
     }
@@ -161,35 +145,17 @@ public class Restaurant implements Serializable {
         changeSupport.firePropertyChange("website", oldWebsite, website);
     }
 
-    public Integer getNumOfReviews() {
-        return numOfReviews;
-    }
+    
 
-    public void setNumOfReviews(Integer numOfReviews) {
-        Integer oldNumOfReviews = this.numOfReviews;
-        this.numOfReviews = numOfReviews;
-        changeSupport.firePropertyChange("numOfReviews", oldNumOfReviews, numOfReviews);
-    }
+    
 
-    public BigDecimal getAverageReview() {
-        return averageReview;
-    }
+    
 
-    public void setAverageReview(BigDecimal averageReview) {
-        BigDecimal oldAverageReview = this.averageReview;
-        this.averageReview = averageReview;
-        changeSupport.firePropertyChange("averageReview", oldAverageReview, averageReview);
-    }
+   
 
-    public BigDecimal getOpenHoursPerWeek() {
-        return openHoursPerWeek;
-    }
+  
 
-    public void setOpenHoursPerWeek(BigDecimal openHoursPerWeek) {
-        BigDecimal oldOpenHoursPerWeek = this.openHoursPerWeek;
-        this.openHoursPerWeek = openHoursPerWeek;
-        changeSupport.firePropertyChange("openHoursPerWeek", oldOpenHoursPerWeek, openHoursPerWeek);
-    }
+   
 
     public Short getPriceRating() {
         return priceRating;
@@ -199,26 +165,6 @@ public class Restaurant implements Serializable {
         Short oldPriceRating = this.priceRating;
         this.priceRating = priceRating;
         changeSupport.firePropertyChange("priceRating", oldPriceRating, priceRating);
-    }
-
-    public Integer getMenuId() {
-        return menuId;
-    }
-
-    public void setMenuId(Integer menuId) {
-        Integer oldMenuId = this.menuId;
-        this.menuId = menuId;
-        changeSupport.firePropertyChange("menuId", oldMenuId, menuId);
-    }
-
-    public Integer getReviewsId() {
-        return reviewsId;
-    }
-
-    public void setReviewsId(Integer reviewsId) {
-        Integer oldReviewsId = this.reviewsId;
-        this.reviewsId = reviewsId;
-        changeSupport.firePropertyChange("reviewsId", oldReviewsId, reviewsId);
     }
 
     @Override

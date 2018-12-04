@@ -5,11 +5,14 @@
  */
 package AppPackage;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author itsch
  */
 public class RestaurantSearch extends javax.swing.JFrame {
+    private final String TAG = this.getClass().getSimpleName();
 
     /**
      * Creates new form RestaurantSearch
@@ -110,16 +113,79 @@ public class RestaurantSearch extends javax.swing.JFrame {
 
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
         // TODO add your handling code here:
-        RestaurantDisplay RestaurantDisplay = new RestaurantDisplay(
-                "SELECT *" +
-                "FROM restaurant AS r" +
-                "INNER JOIN restaurant_type AS rt" +
-                "ON r.RESTAURANT_ID = rt.RESTAURANT_ID" +
-                "WHERE r.RESTAURANT_NAME = 'Calitacos' AND" +
-                "      r.CITY = 'Orange' AND" +
-                "      r.STATE = 'CA' AND" +
-                "      rt.CATEGORY = 'Italian'" + 
-                "VALUES ", new String[0]);
+        
+        //setting the params to send to RestaurantDisplay
+        Param[] params = new Param[4];
+        params[0] = new Param(NameTextField.getText());
+        params[1] = new Param(CityTextField.getText());
+        params[2] = new Param(StateTextField.getText());
+        params[3] = new Param(CategoryTextField.getText());
+        
+        String query = "";
+        query += "" 
+                + " SELECT * " 
+                + "FROM restaurant AS r " 
+                + "INNER JOIN restaurant_type AS rt " 
+                + "ON r.RESTAURANT_ID = rt.RESTAURANT_ID ";
+                
+        
+        String query1 = "";
+        int valid = 0;
+        ArrayList<Param> params1 = new ArrayList<Param>();
+        if (!params[0].getString().equals(""))
+            {
+                valid++;
+                query1 += "r.RESTAURANT_NAME = ?";
+                params1.add(params[0]);
+                if (!params[1].getString().equals(""))
+                {
+                    query1 += "AND";
+                }
+            }
+        if (!params[1].getString().equals(""))
+            {
+                valid++;
+                query1 += "r.CITY = ?";
+                params1.add(params[1]);
+                if (!params[2].getString().equals(""))
+                {
+                    query1 += "AND";
+                }
+            }
+        if (!params[2].getString().equals(""))
+            {
+                valid++;
+                query1 += "r.STATE = ?";
+                params1.add(params[2]);
+                if (!params[3].getString().equals(""))
+                {
+                    query1 += "AND";
+                }
+            }
+        if (!params[0].getString().equals(""))
+            {
+                valid++;
+                query1 += "r.CATEGORY = ?";
+                params1.add(params[3]);
+            }
+        if (valid != 0)
+        {
+            query += "WHERE " + query1;
+            params = new Param[params1.size()];
+            for (int i = 0; i < params.length; ++i)
+            {
+                params[i] = params1.get(i);
+            }
+        }
+        else
+        {
+            params = new Param[0];
+        }
+        query += ";";
+        
+        
+        
+        RestaurantDisplay RestaurantDisplay = new RestaurantDisplay(query , params);
         RestaurantDisplay.setVisible(true);
     }//GEN-LAST:event_SearchButtonActionPerformed
 

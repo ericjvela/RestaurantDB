@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class RestaurantAdd extends javax.swing.JFrame {
 
+    private final String TAG = "RestaurantAdd";
     /**
      * Creates new form RestaurantAdd
      */
@@ -214,7 +215,7 @@ public class RestaurantAdd extends javax.swing.JFrame {
         }
         catch (Exception e)
         {
-            JOptionPane.showMessageDialog(null,e);
+            JOptionPane.showMessageDialog(null,TAG + e);
         }
     }//GEN-LAST:event_AddButtonActionPerformed
 
