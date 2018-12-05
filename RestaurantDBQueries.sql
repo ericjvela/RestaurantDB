@@ -1,23 +1,23 @@
 
 
-#1. Display All Restaurants
-#--------------------------
-START TRANSACTION;
-SELECT * FROM restaurant
-COMMIT;
+-- #1. Display All Restaurants
+-- #--------------------------
+-- START TRANSACTION;
+-- SELECT * FROM restaurant
+-- COMMIT;
 
-#2 Search Restaurant (Sub query)
-#--------------------------
-START TRANSACTION;
-SELECT *
-FROM restaurant AS r
-INNER JOIN restaurant_type AS rt
-ON r.RESTAURANT_ID = rt.RESTAURANT_ID
-WHERE r.RESTAURANT_NAME = 'Calitacos' AND
-	  r.CITY = 'Orange' AND
-      r.STATE = 'CA' AND
-      rt.CATEGORY = 'Italian'
-COMMIT;
+-- #2 Search Restaurant (Sub query)
+-- #--------------------------
+-- START TRANSACTION;
+-- SELECT *
+-- FROM restaurant AS r
+-- INNER JOIN restaurant_type AS rt
+-- ON r.RESTAURANT_ID = rt.RESTAURANT_ID
+-- WHERE r.RESTAURANT_NAME = 'Calitacos' AND
+-- 	  r.CITY = 'Orange' AND
+--       r.STATE = 'CA' AND
+--       rt.CATEGORY = 'Italian'
+-- COMMIT;
 
 #3. Display Restaurant Features
 #----------------------------
@@ -112,7 +112,7 @@ INSERT INTO restaurant(
 VALUES(?,?,?,?,?,?,?)
 COMMIT;
 
-#7. Insert Restaurant features
+#7. Insert Restaurant features/hours of operation
 START TRANSACTION;
 INSERT INTO features(
 					 					 ORDER_DELIVERY,
@@ -170,32 +170,34 @@ VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
 COMMIT;
 
 #9. Insert Review
-#PROMPT FOR RESTAURANT_ID, RATING_GIVEN OUT OF 5 or 10, POSTED_REVIEW is their explanation
-#still need to finish
 
 START TRANSACTION;
+--set up box to capture RESTAURANT_ID
 INSERT INTO reviews (RATING_GIVEN, POSTED_REVIEW)
-VALUES(4, 'It was great!')
-#restaurant id populated with user input
+VALUES(?,?)
+--use get generated key
 INSERT INTO reviews_directory(RESTAURANT_ID, REVIEW_ID)
-VALUES(6, #most recent review_ID)
+VALUES(?, ?)
 COMMIT;
 
 #10. Insert Menu (acknowledging the items table has all of the listed items needed
-#prompt for restaurant ID
-#menu ID should be AutoIncremented
-#still need to finish
+--prompt for restaurant_id of the restaurant they wish to add a menu to
 START TRANSACTION;
 INSERT INTO menu(RESTAURANT_ID)
 VALUES(6)
 COMMIT;
 
+--use get generated key for menu_id
+--have a display menu for the items table on the side
+START TRANSACTION;
+SELECT *
+FROM items
+COMMIT;
 
-#Prompt for menu_id, add item_id endlessly
-#still need to finish
+--alow user to look through table and add items
 START TRANSACTION;
 INSERT INTO menu_items(MENU_ID, ITEM_ID)
-VALUES(#do not know how we would get the menu_id ,#Item they seelcted)
+VALUES(?,?)
 COMMIT;
 
 #11. Update Restaurant
@@ -244,6 +246,7 @@ WHERE RESTAURANT_ID = ?
 COMMIT;
 
 #20. Export as csv
+https://stackoverflow.com/questions/8563376/exporting-sql-query-result-to-a-csv-or-excel
 
 #21. Group by clause
 #Return 10 most frequent restaurants
