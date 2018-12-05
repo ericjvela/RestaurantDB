@@ -19,12 +19,12 @@
 --       rt.CATEGORY = 'Italian'
 -- COMMIT;
 
-#3. Display Restaurant Features
+#3. Display Restaurant Features + category
 #----------------------------
-START TRANSACTION;
+
 SELECT r.RESTAURANT_ID,
 	     r.RESTAURANT_NAME,
-       rt.CATEGORY,
+         c.CATEGORY,
 			 f.ORDER_DELIVERY,
 	   f.ORDER_TAKEOUT,
 	   f.SERVES_ALCOHOL,
@@ -38,7 +38,6 @@ SELECT r.RESTAURANT_ID,
 		 f.GOOD_FOR_KIDS,
 		 f.GOOD_FOR_GROUPS,
 		 f.WAITER_SERVICE,
-		 f.WHEELCHAIR_SERVICE,
 		 f.WHEELCHAIR_ACCESSIBLE,
 		 f.DOGS_ALLOWED,
 		 f.OFFERS_MILITARY_DISCOUNT,
@@ -48,7 +47,7 @@ SELECT r.RESTAURANT_ID,
 		 f.SERVES_BRUNCH,
 		 f.SERVES_LUNCH,
 		 f.SERVES_DINNER,
-		 f.SERVES_DESERT,
+		 f.SERVES_DESSERT,
 		 f.HAS_LIVE_MUSIC,
 		 f.STREET_PARKING,
 		 f.GARAGE_PARKING,
@@ -56,29 +55,11 @@ SELECT r.RESTAURANT_ID,
 		 f.PRIVATE_LOT,
 		 f.FREE_WIFI,
 		 f.ALLOWS_SMOKING
-       h.MON_START,
-       h.MON_END,
-       h.TUE_START,
-       h.TUE_END,
-       h.WED_START,
-       h.WED_END,
-       h.THU_START,
-       h.THU_END,
-       h.FRI_START,
-       h.FRI_END,
-       h.SAT_START,
-       h.SAT_END,
-       h.SUN_START,
-       h.SUN_END,
-			 rt.CATEGORY
 FROM restaurant AS r
 INNER JOIN features AS f
 ON r.RESTAURANT_ID = f.RESTAURANT_ID
-INNER JOIN hours_of_operation AS h
-ON f.RESTAURANT_ID = h.RESTAURANT_ID
-INNER JOIN restaurant_type AS rt
-ON h.RESTAURANT_ID = rt.RESTAURANT_ID
-COMMIT;
+INNER JOIN category as c
+ON r.RESTAURANT_ID = c.RESTAURANT_ID
 
 #4. Display Reviews
 #--------------------------------
@@ -147,26 +128,6 @@ INSERT INTO features(
 										 FREE_WIFI,
 										 ALLOWS_SMOKING
 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-COMMIT;
-
-#8. Insert Hours of Operation
-START TRANSACTION;
-INSERT INTO hours_of_operation(
-							   							 MON_START,
-                               MON_END,
-                               TUE_START,
-                               TUE_END,
-                               WED_START,
-                               WED_END,
-                               THU_START,
-                               THU_END,
-                               FRI_START,
-                               FRI_END,
-                               SAT_START,
-                               SAT_END,
-                               SUN_START,
-                               SUN_END)
-VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
 COMMIT;
 
 #9. Insert Review
