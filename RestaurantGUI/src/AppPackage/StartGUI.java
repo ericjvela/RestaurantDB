@@ -37,6 +37,7 @@ public class StartGUI extends javax.swing.JFrame {
         AddRestaurantButton = new javax.swing.JButton();
         SearchRestaurantButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,6 +86,14 @@ public class StartGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 170, 50));
+
+        jButton2.setText("Show Features");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 170, 50));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 630, 400));
 
         pack();
@@ -119,6 +128,12 @@ public class StartGUI extends javax.swing.JFrame {
         RestaurantAddFeatures temp = new RestaurantAddFeatures();
         temp.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        RestaurantDisplay RestaurantDisplay = new RestaurantDisplay("SELECT * FROM restaurant", new Param[0]);
+        RestaurantDisplay.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,6 +177,7 @@ public class StartGUI extends javax.swing.JFrame {
     private javax.swing.JButton SearchRestaurantButton;
     private javax.swing.JButton UpdateRestaurantButton;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

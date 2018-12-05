@@ -206,7 +206,7 @@ public class RestaurantAdd extends javax.swing.JFrame {
             if (generatedKeys.next()) {
                 System.out.println(TAG + "Generated id: " + generatedKeys.getInt(1));
                 pst = conn.prepareStatement
-                    ("INSERT INTO restaurant_type (RESTAURANT_ID, CATEGORY) "
+                    ("INSERT INTO restaurant_category (RESTAURANT_ID, CATEGORY) "
                         + "VALUES (?, ?);");
                 pst.setInt(1, generatedKeys.getInt(1));
                 pst.setString(2, CategoryTextField.getText());
