@@ -125,7 +125,7 @@ public class RestaurantSearch extends javax.swing.JFrame {
         query += "" 
                 + " SELECT * " 
                 + "FROM restaurant AS r " 
-                + "INNER JOIN restaurant_category AS rt " 
+                + "INNER JOIN category AS rt " 
                 + "ON r.RESTAURANT_ID = rt.RESTAURANT_ID ";
                 
         

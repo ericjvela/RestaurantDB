@@ -32,13 +32,18 @@ public class RestaurantShowFeatures extends javax.swing.JFrame {
         idField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Show Features");
 
         jLabel2.setText("Restaurant ID:");
 
         jButton1.setText("Show");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,6 +76,54 @@ public class RestaurantShowFeatures extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Param[] param = new Param[1];
+        param[0] = new Param(idField.getText());
+        
+        
+        RestaurantDisplay RestaurantDisplay = new RestaurantDisplay("SELECT r.RESTAURANT_ID,\n" +
+"	     r.RESTAURANT_NAME,\n" +
+"         c.CATEGORY,\n" +
+"			 f.ORDER_DELIVERY,\n" +
+"	   f.ORDER_TAKEOUT,\n" +
+"	   f.SERVES_ALCOHOL,\n" +
+"	   f.KID_FRIENDLY,\n" +
+"	   f.PET_FRIENDLY,\n" +
+"	   f.INDOOR,\n" +
+"	   f.OUTDOOR,\n" +
+"	   f.TAKES_RESERVATIONS,\n" +
+"     f.OFFERS_DEALS,\n" +
+"		 f.ACCEPTS_CREDIT_CARDS,\n" +
+"		 f.GOOD_FOR_KIDS,\n" +
+"		 f.GOOD_FOR_GROUPS,\n" +
+"		 f.WAITER_SERVICE,\n" +
+"		 f.WHEELCHAIR_ACCESSIBLE,\n" +
+"		 f.DOGS_ALLOWED,\n" +
+"		 f.OFFERS_MILITARY_DISCOUNT,\n" +
+"		 f.FULL_BAR,\n" +
+"		 f.HAPPY_HOUR,\n" +
+"		 f.SERVES_BREAKFAST,\n" +
+"		 f.SERVES_BRUNCH,\n" +
+"		 f.SERVES_LUNCH,\n" +
+"		 f.SERVES_DINNER,\n" +
+"		 f.SERVES_DESSERT,\n" +
+"		 f.HAS_LIVE_MUSIC,\n" +
+"		 f.STREET_PARKING,\n" +
+"		 f.GARAGE_PARKING,\n" +
+"		 f.VALET_PARKING,\n" +
+"		 f.PRIVATE_LOT,\n" +
+"		 f.FREE_WIFI,\n" +
+"		 f.ALLOWS_SMOKING\n" +
+"FROM restaurant AS r\n" +
+"INNER JOIN features AS f\n" +
+"ON r.RESTAURANT_ID = f.RESTAURANT_ID\n" +
+"INNER JOIN category as c\n" +
+"ON r.RESTAURANT_ID = c.RESTAURANT_ID "
+                + "WHERE r.restaurant_id = ?", param);
+        RestaurantDisplay.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

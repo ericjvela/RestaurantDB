@@ -36,8 +36,8 @@ public class StartGUI extends javax.swing.JFrame {
         UpdateRestaurantButton = new javax.swing.JButton();
         AddRestaurantButton = new javax.swing.JButton();
         SearchRestaurantButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        UpdateFeaturesButton = new javax.swing.JButton();
+        ShowFeaturesButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -79,21 +79,21 @@ public class StartGUI extends javax.swing.JFrame {
         });
         getContentPane().add(SearchRestaurantButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 180, 50));
 
-        jButton1.setText("Update Features");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        UpdateFeaturesButton.setText("Update Features");
+        UpdateFeaturesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                UpdateFeaturesButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 170, 50));
+        getContentPane().add(UpdateFeaturesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 170, 50));
 
-        jButton2.setText("Show Features");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        ShowFeaturesButton.setText("Show Features");
+        ShowFeaturesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                ShowFeaturesButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 170, 50));
+        getContentPane().add(ShowFeaturesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 170, 50));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 630, 400));
 
         pack();
@@ -123,17 +123,17 @@ public class StartGUI extends javax.swing.JFrame {
         restaurantSearch.setVisible(true);
     }//GEN-LAST:event_SearchRestaurantButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void UpdateFeaturesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateFeaturesButtonActionPerformed
         // TODO add your handling code here:
         RestaurantAddFeatures temp = new RestaurantAddFeatures();
         temp.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_UpdateFeaturesButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void ShowFeaturesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowFeaturesButtonActionPerformed
         // TODO add your handling code here:
-        RestaurantDisplay RestaurantDisplay = new RestaurantDisplay("SELECT * FROM restaurant", new Param[0]);
-        RestaurantDisplay.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        RestaurantShowFeatures temp = new RestaurantShowFeatures();
+        temp.setVisible(true);
+    }//GEN-LAST:event_ShowFeaturesButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,9 +175,9 @@ public class StartGUI extends javax.swing.JFrame {
     private javax.swing.JButton AddRestaurantButton;
     private javax.swing.JButton DisplayRecordsButton;
     private javax.swing.JButton SearchRestaurantButton;
+    private javax.swing.JButton ShowFeaturesButton;
+    private javax.swing.JButton UpdateFeaturesButton;
     private javax.swing.JButton UpdateRestaurantButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
