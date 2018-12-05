@@ -50,7 +50,7 @@ public class RestaurantUpdate extends javax.swing.JFrame {
         PriceRatingComboBox = new javax.swing.JComboBox<>();
         UpdateButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Update Restaurant");

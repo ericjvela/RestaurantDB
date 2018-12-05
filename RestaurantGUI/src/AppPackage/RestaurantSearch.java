@@ -41,7 +41,7 @@ public class RestaurantSearch extends javax.swing.JFrame {
         CategoryTextField = new javax.swing.JTextField();
         SearchButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Search Restaurants");
 

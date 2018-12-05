@@ -36,13 +36,15 @@ public class StartGUI extends javax.swing.JFrame {
         UpdateRestaurantButton = new javax.swing.JButton();
         AddRestaurantButton = new javax.swing.JButton();
         SearchRestaurantButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setText("Landing Page");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
+        jLabel2.setText("Restaurant Database");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
 
         DisplayRecordsButton.setText("Display Restaurants");
         DisplayRecordsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -76,6 +78,15 @@ public class StartGUI extends javax.swing.JFrame {
         });
         getContentPane().add(SearchRestaurantButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 180, 50));
 
+        jButton1.setText("Update Features");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 170, 50));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 630, 400));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -102,6 +113,12 @@ public class StartGUI extends javax.swing.JFrame {
         RestaurantSearch restaurantSearch = new RestaurantSearch();
         restaurantSearch.setVisible(true);
     }//GEN-LAST:event_SearchRestaurantButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        RestaurantAddFeatures temp = new RestaurantAddFeatures();
+        temp.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,6 +161,8 @@ public class StartGUI extends javax.swing.JFrame {
     private javax.swing.JButton DisplayRecordsButton;
     private javax.swing.JButton SearchRestaurantButton;
     private javax.swing.JButton UpdateRestaurantButton;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 
