@@ -23,9 +23,9 @@ COMMIT;
 #----------------------------
 START TRANSACTION;
 SELECT r.RESTAURANT_ID,
-	   r.RESTAURANT_NAME,
+	     r.RESTAURANT_NAME,
        rt.CATEGORY,
-       f. ORDER_DELIVERY,
+			 f.ORDER_DELIVERY,
 	   f.ORDER_TAKEOUT,
 	   f.SERVES_ALCOHOL,
 	   f.KID_FRIENDLY,
@@ -33,8 +33,29 @@ SELECT r.RESTAURANT_ID,
 	   f.INDOOR,
 	   f.OUTDOOR,
 	   f.TAKES_RESERVATIONS,
-       f.OFFERS_DEALS,
-       #INCLUDE WHAT EVER IS LEFT IN THE FEATURES TABLE AS f.col_name
+     f.OFFERS_DEALS,
+		 f.ACCEPTS_CREDIT_CARDS,
+		 f.GOOD_FOR_KIDS,
+		 f.GOOD_FOR_GROUPS,
+		 f.WAITER_SERVICE,
+		 f.WHEELCHAIR_SERVICE,
+		 f.WHEELCHAIR_ACCESSIBLE,
+		 f.DOGS_ALLOWED,
+		 f.OFFERS_MILITARY_DISCOUNT,
+		 f.FULL_BAR,
+		 f.HAPPY_HOUR,
+		 f.SERVES_BREAKFAST,
+		 f.SERVES_BRUNCH,
+		 f.SERVES_LUNCH,
+		 f.SERVES_DINNER,
+		 f.SERVES_DESERT,
+		 f.HAS_LIVE_MUSIC,
+		 f.STREET_PARKING,
+		 f.GARAGE_PARKING,
+		 f.VALET_PARKING,
+		 f.PRIVATE_LOT,
+		 f.FREE_WIFI,
+		 f.ALLOWS_SMOKING
        h.MON_START,
        h.MON_END,
        h.TUE_START,
@@ -48,7 +69,8 @@ SELECT r.RESTAURANT_ID,
        h.SAT_START,
        h.SAT_END,
        h.SUN_START,
-       h.SUN_END
+       h.SUN_END,
+			 rt.CATEGORY
 FROM restaurant AS r
 INNER JOIN features AS f
 ON r.RESTAURANT_ID = f.RESTAURANT_ID
@@ -78,7 +100,7 @@ COMMIT;
 #------------------------
 #Already implemennted
 START TRANSACTION;
-INSERT INTO restaurant(RESTAURANT_ID,
+INSERT INTO restaurant(
 											RESTAURANT_NAME,
 											ADDRESS,
 											CITY,
@@ -87,28 +109,50 @@ INSERT INTO restaurant(RESTAURANT_ID,
 											WEBSITE,
 											PRICE_RATING
 											)
-VALUES(?,?,?,?,?,?,?,?)
+VALUES(?,?,?,?,?,?,?)
 COMMIT;
 
 #7. Insert Restaurant features
 START TRANSACTION;
-INSERT INTO features(RESTAURANT_ID,
-					 ORDER_DELIVERY,
+INSERT INTO features(
+					 					 ORDER_DELIVERY,
                      ORDER_TAKEOUT,
                      SERVES_ALCOHOL,
                      KID_FRIENDLY,
                      PET_FRIENDLY,
                      INDOOR,
                      OUTDOOR,
-                     TAKES_RESERVATIONS
-                     #Whatever is left
-VALUES(#however many ?, ?, ?, ?, ...)
+                     TAKES_RESERVATIONS,
+										 OFFERS_DEALS,
+										 ACCEPTS_CREDIT_CARDS,
+										 GOOD_FOR_KIDS,
+										 GOOD_FOR_GROUPS,
+										 WAITER_SERVICE,
+										 WHEELCHAIR_SERVICE,
+										 WHEELCHAIR_ACCESSIBLE,
+										 DOGS_ALLOWED,
+										 OFFERS_MILITARY_DISCOUNT,
+										 FULL_BAR,
+										 HAPPY_HOUR,
+										 SERVES_BREAKFAST,
+										 SERVES_BRUNCH,
+										 SERVES_LUNCH,
+										 SERVES_DINNER,
+										 SERVES_DESERT,
+										 HAS_LIVE_MUSIC,
+										 STREET_PARKING,
+										 GARAGE_PARKING,
+										 VALET_PARKING,
+										 PRIVATE_LOT,
+										 FREE_WIFI,
+										 ALLOWS_SMOKING
+VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 COMMIT;
 
 #8. Insert Hours of Operation
 START TRANSACTION;
-INSERT INTO hours_of_operation(RESTAURANT_ID,
-							   MON_START,
+INSERT INTO hours_of_operation(
+							   							 MON_START,
                                MON_END,
                                TUE_START,
                                TUE_END,
@@ -122,21 +166,7 @@ INSERT INTO hours_of_operation(RESTAURANT_ID,
                                SAT_END,
                                SUN_START,
                                SUN_END)
-VALUES (7,
-		'9:00',
-        '21:00',
-        '9:00',
-        '21:00',
-        '9:00',
-        '21:00',
-        '9:00',
-        '21:00',
-        '9:00',
-        '21:00',
-        '9:00',
-        '21:00',
-        '9:00',
-        '21:00')
+VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
 COMMIT;
 
 #9. Insert Review
