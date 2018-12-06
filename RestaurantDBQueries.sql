@@ -2,22 +2,22 @@
 
 -- #1. Display All Restaurants
 -- #--------------------------
-START TRANSACTION;
-SELECT r.RESTAURANT_ID,
-	     r.RESTAURANT_NAME,
-       r.ADDRESS,
-       r.CITY,
-       r.STATE,
-       r.ZIP_CODE,
-       p.PHONE,
-       w.WEBSITE,
-       r.PRICE_RATING
-FROM restaurant AS r
-INNER JOIN website AS w
-ON r.RESTAURANT_ID = w.RESTAURANT_ID
-INNER JOIN phone AS p
-ON w.RESTAURANT_ID = p.RESTAURANT_ID;
-COMMIT;
+-- START TRANSACTION;
+-- SELECT r.RESTAURANT_ID,
+-- 	     r.RESTAURANT_NAME,
+--        r.ADDRESS,
+--        r.CITY,
+--        r.STATE,
+--        r.ZIP_CODE,
+--        p.PHONE,
+--        w.WEBSITE,
+--        r.PRICE_RATING
+-- FROM restaurant AS r
+-- INNER JOIN website AS w
+-- ON r.RESTAURANT_ID = w.RESTAURANT_ID
+-- INNER JOIN phone AS p
+-- ON w.RESTAURANT_ID = p.RESTAURANT_ID;
+-- COMMIT;
 
 -- #2 Search Restaurant (Sub query)
 -- #--------------------------
@@ -35,45 +35,45 @@ COMMIT;
 -- #3. Display Restaurant Features + category
 -- #----------------------------
 --
-SELECT r.RESTAURANT_ID,
-	     r.RESTAURANT_NAME,
-         c.CATEGORY,
-			 f.ORDER_DELIVERY,
-	   f.ORDER_TAKEOUT,
-	   f.SERVES_ALCOHOL,
-	   f.KID_FRIENDLY,
-	   f.PET_FRIENDLY,
-	   f.INDOOR,
-	   f.OUTDOOR,
-	   f.TAKES_RESERVATIONS,
-     f.OFFERS_DEALS,
-		 f.ACCEPTS_CREDIT_CARDS,
-		 f.GOOD_FOR_KIDS,
-		 f.GOOD_FOR_GROUPS,
-		 f.WAITER_SERVICE,
-		 f.WHEELCHAIR_ACCESSIBLE,
-		 f.DOGS_ALLOWED,
-		 f.OFFERS_MILITARY_DISCOUNT,
-		 f.FULL_BAR,
-		 f.HAPPY_HOUR,
-		 f.SERVES_BREAKFAST,
-		 f.SERVES_BRUNCH,
-		 f.SERVES_LUNCH,
-		 f.SERVES_DINNER,
-		 f.SERVES_DESSERT,
-		 f.HAS_LIVE_MUSIC,
-		 f.STREET_PARKING,
-		 f.GARAGE_PARKING,
-		 f.VALET_PARKING,
-		 f.PRIVATE_LOT,
-		 f.FREE_WIFI,
-		 f.ALLOWS_SMOKING
-FROM restaurant AS r
-INNER JOIN features AS f
-ON r.RESTAURANT_ID = f.RESTAURANT_ID
-INNER JOIN category as c
-ON r.RESTAURANT_ID = c.RESTAURANT_ID
-WHERE r.RESTAURANT_ID = ?
+-- SELECT r.RESTAURANT_ID,
+-- 	     r.RESTAURANT_NAME,
+--          c.CATEGORY,
+-- 			 f.ORDER_DELIVERY,
+-- 	   f.ORDER_TAKEOUT,
+-- 	   f.SERVES_ALCOHOL,
+-- 	   f.KID_FRIENDLY,
+-- 	   f.PET_FRIENDLY,
+-- 	   f.INDOOR,
+-- 	   f.OUTDOOR,
+-- 	   f.TAKES_RESERVATIONS,
+--      f.OFFERS_DEALS,
+-- 		 f.ACCEPTS_CREDIT_CARDS,
+-- 		 f.GOOD_FOR_KIDS,
+-- 		 f.GOOD_FOR_GROUPS,
+-- 		 f.WAITER_SERVICE,
+-- 		 f.WHEELCHAIR_ACCESSIBLE,
+-- 		 f.DOGS_ALLOWED,
+-- 		 f.OFFERS_MILITARY_DISCOUNT,
+-- 		 f.FULL_BAR,
+-- 		 f.HAPPY_HOUR,
+-- 		 f.SERVES_BREAKFAST,
+-- 		 f.SERVES_BRUNCH,
+-- 		 f.SERVES_LUNCH,
+-- 		 f.SERVES_DINNER,
+-- 		 f.SERVES_DESSERT,
+-- 		 f.HAS_LIVE_MUSIC,
+-- 		 f.STREET_PARKING,
+-- 		 f.GARAGE_PARKING,
+-- 		 f.VALET_PARKING,
+-- 		 f.PRIVATE_LOT,
+-- 		 f.FREE_WIFI,
+-- 		 f.ALLOWS_SMOKING
+-- FROM restaurant AS r
+-- INNER JOIN features AS f
+-- ON r.RESTAURANT_ID = f.RESTAURANT_ID
+-- INNER JOIN category as c
+-- ON r.RESTAURANT_ID = c.RESTAURANT_ID
+-- WHERE r.RESTAURANT_ID = ?
 
 #4. Display Reviews
 #--------------------------------
@@ -106,71 +106,71 @@ ON mi.ITEM_ID = i.ITEM_ID
 ORDER BY MENU_ID DESC
 WHERE RESTAURANT_ID = ?
 
-#6. Insert Restaurant
-#--------------------------------------
-INSERT INTO restaurant(RESTAURANT_NAME,
-												ADDRESS,
-                        CITY,
-                        STATE,
-                        PRICE_RATING)
-VALUES(?,?,?,?,?)
-#use get generated key
-INSERT INTO website(RESTAURANT_ID, WEBSITE)
-VALUES (?, ?)
+-- #6. Insert Restaurant
+-- #--------------------------------------
+-- INSERT INTO restaurant(RESTAURANT_NAME,
+-- 												ADDRESS,
+--                         CITY,
+--                         STATE,
+--                         PRICE_RATING)
+-- VALUES(?,?,?,?,?)
+-- #use get generated key
+-- INSERT INTO website(RESTAURANT_ID, WEBSITE)
+-- VALUES (?, ?)
+--
+-- #use same geenrated key
+-- INSERT INTO phone(RESTAURANT_ID, PHONE)
+-- VALUES(?,?)
+-- START TRANSACTION;
+-- INSERT INTO restaurant(
+-- 											RESTAURANT_NAME,
+-- 											ADDRESS,
+-- 											CITY,
+-- 											STATE,
+-- 											PHONE,
+-- 											WEBSITE,
+-- 											PRICE_RATING
+-- 											)
+-- VALUES(?,?,?,?,?,?,?)
+-- COMMIT;
 
-#use same geenrated key
-INSERT INTO phone(RESTAURANT_ID, PHONE)
-VALUES(?,?)
-START TRANSACTION;
-INSERT INTO restaurant(
-											RESTAURANT_NAME,
-											ADDRESS,
-											CITY,
-											STATE,
-											PHONE,
-											WEBSITE,
-											PRICE_RATING
-											)
-VALUES(?,?,?,?,?,?,?)
-COMMIT;
 
-
-#7. Insert Restaurant features/hours of operation
-START TRANSACTION;
-INSERT INTO features(
-					 					 ORDER_DELIVERY,
-                     ORDER_TAKEOUT,
-                     SERVES_ALCOHOL,
-                     KID_FRIENDLY,
-                     PET_FRIENDLY,
-                     INDOOR,
-                     OUTDOOR,
-                     TAKES_RESERVATIONS,
-										 OFFERS_DEALS,
-										 ACCEPTS_CREDIT_CARDS,
-										 GOOD_FOR_KIDS,
-										 GOOD_FOR_GROUPS,
-										 WAITER_SERVICE,
-										 WHEELCHAIR_SERVICE,
-										 WHEELCHAIR_ACCESSIBLE,
-										 DOGS_ALLOWED,
-										 OFFERS_MILITARY_DISCOUNT,
-										 FULL_BAR,
-										 HAPPY_HOUR,
-										 SERVES_BREAKFAST,
-										 SERVES_BRUNCH,
-										 SERVES_LUNCH,
-										 SERVES_DINNER,
-										 SERVES_DESERT,
-										 HAS_LIVE_MUSIC,
-										 STREET_PARKING,
-										 GARAGE_PARKING,
-										 VALET_PARKING,
-										 PRIVATE_LOT,
-										 FREE_WIFI,
-										 ALLOWS_SMOKING
-VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-COMMIT;
+-- #7. Insert Restaurant features/
+-- START TRANSACTION;
+-- INSERT INTO features(
+-- 					 					 ORDER_DELIVERY,
+--                      ORDER_TAKEOUT,
+--                      SERVES_ALCOHOL,
+--                      KID_FRIENDLY,
+--                      PET_FRIENDLY,
+--                      INDOOR,
+--                      OUTDOOR,
+--                      TAKES_RESERVATIONS,
+-- 										 OFFERS_DEALS,
+-- 										 ACCEPTS_CREDIT_CARDS,
+-- 										 GOOD_FOR_KIDS,
+-- 										 GOOD_FOR_GROUPS,
+-- 										 WAITER_SERVICE,
+-- 										 WHEELCHAIR_SERVICE,
+-- 										 WHEELCHAIR_ACCESSIBLE,
+-- 										 DOGS_ALLOWED,
+-- 										 OFFERS_MILITARY_DISCOUNT,
+-- 										 FULL_BAR,
+-- 										 HAPPY_HOUR,
+-- 										 SERVES_BREAKFAST,
+-- 										 SERVES_BRUNCH,
+-- 										 SERVES_LUNCH,
+-- 										 SERVES_DINNER,
+-- 										 SERVES_DESERT,
+-- 										 HAS_LIVE_MUSIC,
+-- 										 STREET_PARKING,
+-- 										 GARAGE_PARKING,
+-- 										 VALET_PARKING,
+-- 										 PRIVATE_LOT,
+-- 										 FREE_WIFI,
+-- 										 ALLOWS_SMOKING
+-- VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+-- COMMIT;
 
 #9. Insert Review
 
@@ -207,8 +207,22 @@ COMMIT;
 
 START TRANSACTION;
 UPDATE restaurant
-SET RESTAURANT_NAME = ?
+SET RESTAURANT_NAME = ?,
+		ADDRESS = ?,
+		CITY = ?,
+		STATE = ?,
+		PRICE_RATING = ?
 WHERE RESTAURANT_ID = ?
+
+
+UPDATE website
+SET WEBSITE = ?
+WHERE RESTAURANT_ID = ?
+
+UPDATE phone
+SET PHONE = ?
+WHERE RESTAURANT_ID = ?
+
 COMMIT;
 
 
@@ -218,8 +232,8 @@ DELETE FROM restaurant
 WHERE RESTAURANT_ID = ?
 COMMIT;
 
-#20. Export as csv
-https://stackoverflow.com/questions/8563376/exporting-sql-query-result-to-a-csv-or-excel
+-- #20. Export as csv
+-- https://stackoverflow.com/questions/8563376/exporting-sql-query-result-to-a-csv-or-excel
 
 #21. Group by clause
 #Return 10 most frequent restaurant names
