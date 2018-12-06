@@ -172,16 +172,16 @@ WHERE RESTAURANT_ID = ?
 -- VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 -- COMMIT;
 
-#9. Insert Review
-
-START TRANSACTION;
---set up box to capture RESTAURANT_ID
-INSERT INTO reviews (RATING_GIVEN, POSTED_REVIEW)
-VALUES(?,?)
---use get generated key to get review id
-INSERT INTO reviews_directory(RESTAURANT_ID, REVIEW_ID)
-VALUES(?, ?)
-COMMIT;
+-- #9. Insert Review
+--
+-- START TRANSACTION;
+-- --set up box to capture RESTAURANT_ID
+-- INSERT INTO reviews (RATING_GIVEN, POSTED_REVIEW)
+-- VALUES(?,?)
+-- --use get generated key to get review id
+-- INSERT INTO reviews_directory(RESTAURANT_ID, REVIEW_ID)
+-- VALUES(?, ?)
+-- COMMIT;
 
 #10. Insert Menu (acknowledging the items table has all of the listed items needed
 --prompt for restaurant_id of the restaurant they wish to add a menu to
@@ -226,11 +226,11 @@ WHERE RESTAURANT_ID = ?
 COMMIT;
 
 
-#15. Delete Restaurant
-START TRANSACTION;
-DELETE FROM restaurant
-WHERE RESTAURANT_ID = ?
-COMMIT;
+-- #15. Delete Restaurant
+-- START TRANSACTION;
+-- DELETE FROM restaurant
+-- WHERE RESTAURANT_ID = ?
+-- COMMIT;
 
 -- #20. Export as csv
 -- https://stackoverflow.com/questions/8563376/exporting-sql-query-result-to-a-csv-or-excel
