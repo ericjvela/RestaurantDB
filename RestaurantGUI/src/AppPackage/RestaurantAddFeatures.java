@@ -130,9 +130,14 @@ public class RestaurantAddFeatures extends javax.swing.JFrame {
         String user = "charlie";
         String password = "myPassword";
         
+        Connection conn = null;
+        
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url, user, password);
+            
+            conn.setAutoCommit(false);
+            
             PreparedStatement pst = conn.prepareStatement
             ("UPDATE features SET " + jComboBox1.getSelectedItem().toString() +  " = ? WHERE RESTAURANT_ID = ?");
             
@@ -143,8 +148,19 @@ public class RestaurantAddFeatures extends javax.swing.JFrame {
             pst.executeUpdate();
             
 
+            conn.commit();
             conn.close();
             JOptionPane.showMessageDialog(null, "Updated Successfully.");
+        }
+        catch (SQLException se)
+        {
+            try{
+                if(conn != null)
+                    conn.rollback();
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+            JOptionPane.showMessageDialog(null,TAG + se);
         }
         catch (Exception e)
         {

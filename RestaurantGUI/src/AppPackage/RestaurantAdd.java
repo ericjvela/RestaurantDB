@@ -52,6 +52,8 @@ public class RestaurantAdd extends javax.swing.JFrame {
         AddButton = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         CategoryTextField = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        ZipCodeField = new javax.swing.JTextField();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -85,46 +87,53 @@ public class RestaurantAdd extends javax.swing.JFrame {
 
         jLabel9.setText("Category (Ex: Italian)");
 
+        jLabel10.setText("Zip Code:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addComponent(AddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(384, 384, 384))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(244, 244, 244)
                         .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(AddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(374, 374, 374))
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel9)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(PriceRatingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(AddressTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                                                .addComponent(RestaurantNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                                                .addComponent(CityTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                                                .addComponent(StateTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                                                .addComponent(PhoneTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                                                .addComponent(WebsiteTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                                                .addComponent(CategoryTextField)))))
-                                .addGap(0, 316, Short.MAX_VALUE)))))
+                                .addGap(10, 10, 10)
+                                .addComponent(PriceRatingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 334, Short.MAX_VALUE)))))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel9)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(AddressTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                            .addComponent(RestaurantNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                            .addComponent(CityTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                            .addComponent(StateTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                            .addComponent(PhoneTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                            .addComponent(WebsiteTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                            .addComponent(CategoryTextField)
+                            .addComponent(ZipCodeField))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,12 +169,16 @@ public class RestaurantAdd extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CategoryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel10)
+                .addGap(2, 2, 2)
+                .addComponent(ZipCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel8)
                 .addGap(9, 9, 9)
                 .addComponent(PriceRatingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(AddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addContainerGap())
         );
 
         pack();
@@ -177,22 +190,25 @@ public class RestaurantAdd extends javax.swing.JFrame {
         String user = "charlie";
         String password = "myPassword";
         
+        Connection conn = null;
+        
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url, user, password);
+            conn.setAutoCommit(false);
             PreparedStatement pst = conn.prepareStatement
-            ("INSERT INTO restaurant (RESTAURANT_NAME, ADDRESS, CITY, STATE, PHONE, WEBSITE, PRICE_RATING) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
+            ("INSERT INTO restaurant (RESTAURANT_NAME, ADDRESS, CITY, STATE, ZIP_CODE, PRICE_RATING) "
+                    + "VALUES (?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
                     
             pst.setString(1, RestaurantNameTextField.getText());
             pst.setString(2, AddressTextField.getText());
             pst.setString(3, CityTextField.getText());
             pst.setString(4, StateTextField.getText());
-            pst.setString(5, PhoneTextField.getText());
-            pst.setString(6, WebsiteTextField.getText());
+            pst.setString(5, ZipCodeField.getText());
+           
             
             String pr = PriceRatingComboBox.getSelectedItem().toString();
-            pst.setString(7, pr);
+            pst.setString(6, pr);
             
             // getting the ID of what was just inserted
             int affectedRows = pst.executeUpdate();
@@ -205,6 +221,8 @@ public class RestaurantAdd extends javax.swing.JFrame {
             try (ResultSet generatedKeys = pst.getGeneratedKeys()) {
             if (generatedKeys.next()) {
                 System.out.println(TAG + "Generated id: " + generatedKeys.getInt(1));
+                
+                //Insert into category
                 pst = conn.prepareStatement
                     ("INSERT INTO category (RESTAURANT_ID, CATEGORY) "
                         + "VALUES (?, ?);");
@@ -213,6 +231,7 @@ public class RestaurantAdd extends javax.swing.JFrame {
                 
                 pst.executeUpdate();
                 
+                //Insert into Features
                 pst = conn.prepareStatement("INSERT INTO features(RESTAURANT_ID, ORDER_DELIVERY, ORDER_TAKEOUT, SERVES_ALCOHOL, KID_FRIENDLY, PET_FRIENDLY, INDOOR, OUTDOOR, TAKES_RESERVATIONS, OFFERS_DEALS, ACCEPTS_CREDIT_CARDS, GOOD_FOR_KIDS, GOOD_FOR_GROUPS, WAITER_SERVICE, WHEELCHAIR_ACCESSIBLE, DOGS_ALLOWED, OFFERS_MILITARY_DISCOUNT, FULL_BAR, HAPPY_HOUR, SERVES_BREAKFAST, SERVES_BRUNCH, SERVES_LUNCH, SERVES_DINNER, SERVES_DESSERT, HAS_LIVE_MUSIC, STREET_PARKING, GARAGE_PARKING, VALET_PARKING, PRIVATE_LOT, FREE_WIFI, ALLOWS_SMOKING)"
                         + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                 pst.setInt(1, generatedKeys.getInt(1));
@@ -220,6 +239,24 @@ public class RestaurantAdd extends javax.swing.JFrame {
                 {
                     pst.setString(i, "N");
                 }
+                
+                pst.executeUpdate();
+                
+                //Insert into phone
+                 pst = conn.prepareStatement
+                    ("INSERT INTO phone (RESTAURANT_ID, PHONE) "
+                        + "VALUES (?, ?);");
+                pst.setInt(1, generatedKeys.getInt(1));
+                pst.setString(2, PhoneTextField.getText());
+                
+                pst.executeUpdate();
+                
+                //Insert into website
+                 pst = conn.prepareStatement
+                    ("INSERT INTO website (RESTAURANT_ID, WEBSITE) "
+                        + "VALUES (?, ?);");
+                pst.setInt(1, generatedKeys.getInt(1));
+                pst.setString(2, WebsiteTextField.getText());
                 
                 pst.executeUpdate();
                 
@@ -232,9 +269,22 @@ public class RestaurantAdd extends javax.swing.JFrame {
             }
         }
             
+            
             JOptionPane.showMessageDialog(null, "Inserted Successfully.");
 
+            conn.commit();
+            
             conn.close();
+        }
+        catch (SQLException se)
+        {
+            try{
+                if(conn != null)
+                    conn.rollback();
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+            JOptionPane.showMessageDialog(null,TAG + se);
         }
         catch (Exception e)
         {
@@ -288,7 +338,9 @@ public class RestaurantAdd extends javax.swing.JFrame {
     private javax.swing.JTextField RestaurantNameTextField;
     private javax.swing.JTextField StateTextField;
     private javax.swing.JTextField WebsiteTextField;
+    private javax.swing.JTextField ZipCodeField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -6,6 +6,7 @@
 package AppPackage;
 
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,6 +39,10 @@ public class StartGUI extends javax.swing.JFrame {
         SearchRestaurantButton = new javax.swing.JButton();
         UpdateFeaturesButton = new javax.swing.JButton();
         ShowFeaturesButton = new javax.swing.JButton();
+        ExportButton = new javax.swing.JButton();
+        InserReviewButton = new javax.swing.JButton();
+        DeleteRestaurantButton = new javax.swing.JButton();
+        ShowReviewsButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,7 +90,7 @@ public class StartGUI extends javax.swing.JFrame {
                 UpdateFeaturesButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(UpdateFeaturesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 170, 50));
+        getContentPane().add(UpdateFeaturesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 180, 50));
 
         ShowFeaturesButton.setText("Show Features");
         ShowFeaturesButton.addActionListener(new java.awt.event.ActionListener() {
@@ -93,15 +98,60 @@ public class StartGUI extends javax.swing.JFrame {
                 ShowFeaturesButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(ShowFeaturesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 170, 50));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 630, 400));
+        getContentPane().add(ShowFeaturesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 180, 50));
+
+        ExportButton.setText("Export to CSV");
+        ExportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExportButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ExportButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
+
+        InserReviewButton.setText("Insert Review");
+        InserReviewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InserReviewButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(InserReviewButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 180, 50));
+
+        DeleteRestaurantButton.setText("Delete Restaurant");
+        DeleteRestaurantButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteRestaurantButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(DeleteRestaurantButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 180, 50));
+
+        ShowReviewsButton.setText("Show Reviews");
+        ShowReviewsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ShowReviewsButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ShowReviewsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, 180, 50));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 830, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void DisplayRecordsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisplayRecordsButtonActionPerformed
 //Link to new Jframe
-        RestaurantDisplay RestaurantDisplay = new RestaurantDisplay("SELECT * FROM restaurant", new Param[0]);
+        RestaurantDisplay RestaurantDisplay = new RestaurantDisplay("SELECT r.RESTAURANT_ID,\n"
+                + "	     r.RESTAURANT_NAME,\n"
+                + "       r.ADDRESS,\n"
+                + "       r.CITY,\n"
+                + "       r.STATE,\n"
+                + "       r.ZIP_CODE,\n"
+                + "       p.PHONE,\n"
+                + "       w.WEBSITE,\n"
+                + "       r.PRICE_RATING\n"
+                + "FROM restaurant AS r\n"
+                + "INNER JOIN website AS w\n"
+                + "ON r.RESTAURANT_ID = w.RESTAURANT_ID\n"
+                + "INNER JOIN phone AS p\n"
+                + "ON w.RESTAURANT_ID = p.RESTAURANT_ID;", new Param[0]);
         RestaurantDisplay.setVisible(true);
     }//GEN-LAST:event_DisplayRecordsButtonActionPerformed
 
@@ -134,6 +184,47 @@ public class StartGUI extends javax.swing.JFrame {
         RestaurantShowFeatures temp = new RestaurantShowFeatures();
         temp.setVisible(true);
     }//GEN-LAST:event_ShowFeaturesButtonActionPerformed
+
+    private void ExportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportButtonActionPerformed
+        // TODO add your handling code here:
+        String url = "jdbc:mysql://DESKTOP-Q1NBULV:3306/restaurant_db?zeroDateTimeBehavior=convertToNull";
+        String user = "charlie";
+        String password = "myPassword";
+        
+        Connection conn = null;
+        
+        String Query = "SELECT * FROM restaurant;";
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            
+            Export.printToCsv(Export.fetchDataFromDatabase(Query, conn), "Export.csv");
+            
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,TAG + e);
+        }
+    }//GEN-LAST:event_ExportButtonActionPerformed
+
+    private void InserReviewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InserReviewButtonActionPerformed
+        // TODO add your handling code here:
+        RestaurantInsertReview temp = new RestaurantInsertReview();
+        temp.setVisible(true);
+    }//GEN-LAST:event_InserReviewButtonActionPerformed
+
+    private void DeleteRestaurantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteRestaurantButtonActionPerformed
+        // TODO add your handling code here:
+        RestaurantDelete temp = new RestaurantDelete();
+        temp.setVisible(true);
+    }//GEN-LAST:event_DeleteRestaurantButtonActionPerformed
+
+    private void ShowReviewsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowReviewsButtonActionPerformed
+        // TODO add your handling code here:
+        RestaurantShowReviews temp = new RestaurantShowReviews();
+        temp.setVisible(true);
+    }//GEN-LAST:event_ShowReviewsButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,9 +264,13 @@ public class StartGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddRestaurantButton;
+    private javax.swing.JButton DeleteRestaurantButton;
     private javax.swing.JButton DisplayRecordsButton;
+    private javax.swing.JButton ExportButton;
+    private javax.swing.JButton InserReviewButton;
     private javax.swing.JButton SearchRestaurantButton;
     private javax.swing.JButton ShowFeaturesButton;
+    private javax.swing.JButton ShowReviewsButton;
     private javax.swing.JButton UpdateFeaturesButton;
     private javax.swing.JButton UpdateRestaurantButton;
     private javax.swing.JLabel jLabel1;
