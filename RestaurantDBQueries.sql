@@ -16,7 +16,7 @@ FROM restaurant AS r
 INNER JOIN website AS w
 ON r.RESTAURANT_ID = w.RESTAURANT_ID
 INNER JOIN phone AS p
-ON w.RESTAURANT_ID = p.RESTAURANT_ID
+ON w.RESTAURANT_ID = p.RESTAURANT_ID;
 COMMIT;
 
 -- #2 Search Restaurant (Sub query)
