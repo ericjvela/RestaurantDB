@@ -21,16 +21,26 @@
 
 -- #2 Search Restaurant (Sub query)
 -- #--------------------------
--- START TRANSACTION;
--- SELECT *
--- FROM restaurant AS r
--- INNER JOIN restaurant_type AS rt
--- ON r.RESTAURANT_ID = rt.RESTAURANT_ID
--- WHERE r.RESTAURANT_NAME = 'Calitacos' AND
--- 	  r.CITY = 'Orange' AND
---       r.STATE = 'CA' AND
---       rt.CATEGORY = 'Italian'
--- COMMIT;
+START TRANSACTION;
+SELECT r.RESTAURANT_ID,
+	     r.RESTAURANT_NAME,
+       r.ADDRESS,
+       r.CITY,
+       r.STATE,
+       r.ZIP_CODE,
+       p.PHONE,
+       w.WEBSITE,
+       r.PRICE_RATING
+FROM restaurant AS r
+INNER JOIN website AS w
+ON r.RESTAURANT_ID = w.RESTAURANT_ID
+INNER JOIN phone AS p
+ON w.RESTAURANT_ID = p.RESTAURANT_ID;
+WHERE r.RESTAURANT_NAME = 'Calitacos' AND
+	  r.CITY = 'Orange' AND
+      r.STATE = 'CA' AND
+      rt.CATEGORY = 'Italian'
+COMMIT;
 
 -- #3. Display Restaurant Features + category
 -- #----------------------------
@@ -75,17 +85,17 @@
 -- ON r.RESTAURANT_ID = c.RESTAURANT_ID
 -- WHERE r.RESTAURANT_ID = ?
 
-#4. Display Reviews
-#--------------------------------
-START TRANSACTION;
-SELECT rd.RESTAURANT_ID,
-	   rev.REVIEW_ID,
-       rev.RATING_GIVEN,
-       rev.POSTED_REVIEW
-FROM reviews_directory AS rd
-INNER JOIN reviews AS rev
-ON rd.REVIEW_ID = rev.REVIEW_ID
-COMMIT;
+-- #4. Display Reviews
+-- #--------------------------------
+-- START TRANSACTION;
+-- SELECT rd.RESTAURANT_ID,
+-- 	   rev.REVIEW_ID,
+--        rev.RATING_GIVEN,
+--        rev.POSTED_REVIEW
+-- FROM reviews_directory AS rd
+-- INNER JOIN reviews AS rev
+-- ON rd.REVIEW_ID = rev.REVIEW_ID
+-- COMMIT;
 
 #5. Display Restaurant Menus
 #---------------------------------
@@ -203,27 +213,27 @@ INSERT INTO menu_items(MENU_ID, ITEM_ID)
 VALUES(?,?)
 COMMIT;
 
-#11. Update Restaurant
-
-START TRANSACTION;
-UPDATE restaurant
-SET RESTAURANT_NAME = ?,
-		ADDRESS = ?,
-		CITY = ?,
-		STATE = ?,
-		PRICE_RATING = ?
-WHERE RESTAURANT_ID = ?
-
-
-UPDATE website
-SET WEBSITE = ?
-WHERE RESTAURANT_ID = ?
-
-UPDATE phone
-SET PHONE = ?
-WHERE RESTAURANT_ID = ?
-
-COMMIT;
+-- #11. Update Restaurant
+--
+-- START TRANSACTION;
+-- UPDATE restaurant
+-- SET RESTAURANT_NAME = ?,
+-- 		ADDRESS = ?,
+-- 		CITY = ?,
+-- 		STATE = ?,
+-- 		PRICE_RATING = ?
+-- WHERE RESTAURANT_ID = ?
+--
+--
+-- UPDATE website
+-- SET WEBSITE = ?
+-- WHERE RESTAURANT_ID = ?
+--
+-- UPDATE phone
+-- SET PHONE = ?
+-- WHERE RESTAURANT_ID = ?
+--
+-- COMMIT;
 
 
 -- #15. Delete Restaurant
