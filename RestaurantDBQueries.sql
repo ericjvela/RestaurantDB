@@ -2,9 +2,22 @@
 
 -- #1. Display All Restaurants
 -- #--------------------------
--- START TRANSACTION;
--- SELECT * FROM restaurant
--- COMMIT;
+START TRANSACTION;
+SELECT r.RESTAURANT_ID,
+	     r.RESTAURANT_NAME,
+       r.ADDRESS,
+       r.CITY,
+       r.STATE,
+       r.ZIP_CODE,
+       p.PHONE,
+       w.WEBSITE,
+       r.PRICE_RATING
+FROM restaurant AS r
+INNER JOIN website AS w
+ON r.RESTAURANT_ID = w.RESTAURANT_ID
+INNER JOIN phone AS p
+ON w.RESTAURANT_ID = p.RESTAURANT_ID
+COMMIT;
 
 -- #2 Search Restaurant (Sub query)
 -- #--------------------------
@@ -94,8 +107,20 @@ ORDER BY MENU_ID DESC
 WHERE RESTAURANT_ID = ?
 
 #6. Insert Restaurant
-#------------------------
-#Already implemennted
+#--------------------------------------
+INSERT INTO restaurant(RESTAURANT_NAME,
+												ADDRESS,
+                        CITY,
+                        STATE,
+                        PRICE_RATING)
+VALUES(?,?,?,?,?)
+#use get generated key
+INSERT INTO website(RESTAURANT_ID, WEBSITE)
+VALUES (?, ?)
+
+#use same geenrated key
+INSERT INTO phone(RESTAURANT_ID, PHONE)
+VALUES(?,?)
 START TRANSACTION;
 INSERT INTO restaurant(
 											RESTAURANT_NAME,
@@ -108,6 +133,7 @@ INSERT INTO restaurant(
 											)
 VALUES(?,?,?,?,?,?,?)
 COMMIT;
+
 
 #7. Insert Restaurant features/hours of operation
 START TRANSACTION;
