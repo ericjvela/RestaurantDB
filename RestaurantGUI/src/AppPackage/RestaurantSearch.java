@@ -122,48 +122,67 @@ public class RestaurantSearch extends javax.swing.JFrame {
         params[3] = new Param(CategoryTextField.getText());
         
         String query = "";
-        query += "" 
-                + " SELECT * " 
-                + "FROM restaurant AS r " 
-                + "INNER JOIN category AS rt " 
-                + "ON r.RESTAURANT_ID = rt.RESTAURANT_ID ";
+        query += "SELECT r.RESTAURANT_ID,\n"
+                + "	     r.RESTAURANT_NAME,\n"
+                + "       r.ADDRESS,\n"
+                + "       r.CITY,\n"
+                + "       r.STATE,\n"
+                + "       r.ZIP_CODE,\n"
+                + "       p.PHONE,\n"
+                + "       w.WEBSITE,\n"
+                + "			 c.CATEGORY,\n"
+                + "       r.PRICE_RATING\n"
+                + "FROM restaurant AS r\n"
+                + "LEFT JOIN website AS w\n"
+                + "ON r.RESTAURANT_ID = w.RESTAURANT_ID\n"
+                + "LEFT JOIN phone AS p\n"
+                + "ON w.RESTAURANT_ID = p.RESTAURANT_ID\n"
+                + "LEFT JOIN category as c\n"
+                + "ON p.RESTAURANT_ID = c.RESTAURANT_ID; ";
                 
         
         String query1 = "";
         int valid = 0;
         ArrayList<Param> params1 = new ArrayList<Param>();
+        
+       
+        
         if (!params[0].getString().equals(""))
             {
                 valid++;
                 query1 += "r.RESTAURANT_NAME = ?";
                 params1.add(params[0]);
-                if (!params[1].getString().equals(""))
-                {
-                    query1 += "AND";
-                }
+                
+                
             }
         if (!params[1].getString().equals(""))
             {
+                if (valid != 0)
+                {
+                    query1 += " AND ";
+                }
                 valid++;
                 query1 += "r.CITY = ?";
                 params1.add(params[1]);
-                if (!params[2].getString().equals(""))
-                {
-                    query1 += "AND";
-                }
+                
             }
         if (!params[2].getString().equals(""))
             {
+                if (valid != 0)
+                {
+                    query1 += " AND ";
+                }
                 valid++;
                 query1 += "r.STATE = ?";
                 params1.add(params[2]);
-                if (!params[3].getString().equals(""))
-                {
-                    query1 += "AND";
-                }
+                
             }
-        if (!params[0].getString().equals(""))
+        if (!params[3].getString().equals(""))
             {
+                if (valid != 0)
+                {
+                    query1 += " AND ";
+                }
                 valid++;
                 query1 += "r.CATEGORY = ?";
                 params1.add(params[3]);
