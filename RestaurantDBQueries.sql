@@ -11,6 +11,7 @@ SELECT r.RESTAURANT_ID,
        r.ZIP_CODE,
        p.PHONE,
        w.WEBSITE,
+			 c.CATEGORY,
        r.PRICE_RATING
 FROM restaurant AS r
 LEFT JOIN website AS w
@@ -32,7 +33,7 @@ SELECT r.RESTAURANT_ID,
        r.ZIP_CODE,
        p.PHONE,
        w.WEBSITE,
-			 rt.CATEGORY,
+			 c.CATEGORY,
        r.PRICE_RATING
 FROM restaurant AS r
 LEFT JOIN website AS w
@@ -44,7 +45,7 @@ ON p.RESTAURANT_ID = c.RESTAURANT_ID;
 WHERE r.RESTAURANT_NAME = 'Calitacos' AND
 	  r.CITY = 'Orange' AND
       r.STATE = 'CA' AND
-      rt.CATEGORY = 'Italian'
+      c.CATEGORY = 'Italian'
 COMMIT;
 
 -- #3. Display Restaurant Features + category
