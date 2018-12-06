@@ -19,9 +19,9 @@
 --       rt.CATEGORY = 'Italian'
 -- COMMIT;
 
-#3. Display Restaurant Features + category
-#----------------------------
-
+-- #3. Display Restaurant Features + category
+-- #----------------------------
+--
 SELECT r.RESTAURANT_ID,
 	     r.RESTAURANT_NAME,
          c.CATEGORY,
@@ -60,6 +60,7 @@ INNER JOIN features AS f
 ON r.RESTAURANT_ID = f.RESTAURANT_ID
 INNER JOIN category as c
 ON r.RESTAURANT_ID = c.RESTAURANT_ID
+WHERE r.RESTAURANT_ID = ?
 
 #4. Display Reviews
 #--------------------------------
