@@ -13,10 +13,12 @@
 --        w.WEBSITE,
 --        r.PRICE_RATING
 -- FROM restaurant AS r
--- INNER JOIN website AS w
+-- LEFT JOIN website AS w
 -- ON r.RESTAURANT_ID = w.RESTAURANT_ID
--- INNER JOIN phone AS p
--- ON w.RESTAURANT_ID = p.RESTAURANT_ID;
+-- LEFT JOIN phone AS p
+-- ON w.RESTAURANT_ID = p.RESTAURANT_ID
+-- LEFT JOIN category as c
+-- ON p.RESTAURANT_ID = c.RESTAURANT_ID;
 -- COMMIT;
 
 -- #2 Search Restaurant (Sub query)
@@ -32,9 +34,9 @@ SELECT r.RESTAURANT_ID,
        w.WEBSITE,
        r.PRICE_RATING
 FROM restaurant AS r
-INNER JOIN website AS w
+LEFT JOIN website AS w
 ON r.RESTAURANT_ID = w.RESTAURANT_ID
-INNER JOIN phone AS p
+LEFT JOIN phone AS p
 ON w.RESTAURANT_ID = p.RESTAURANT_ID;
 WHERE r.RESTAURANT_NAME = 'Calitacos' AND
 	  r.CITY = 'Orange' AND
