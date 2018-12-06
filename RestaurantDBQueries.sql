@@ -2,27 +2,6 @@
 
 -- #1. Display All Restaurants
 -- #--------------------------
--- START TRANSACTION;
--- SELECT r.RESTAURANT_ID,
--- 	     r.RESTAURANT_NAME,
---        r.ADDRESS,
---        r.CITY,
---        r.STATE,
---        r.ZIP_CODE,
---        p.PHONE,
---        w.WEBSITE,
---        r.PRICE_RATING
--- FROM restaurant AS r
--- LEFT JOIN website AS w
--- ON r.RESTAURANT_ID = w.RESTAURANT_ID
--- LEFT JOIN phone AS p
--- ON w.RESTAURANT_ID = p.RESTAURANT_ID
--- LEFT JOIN category as c
--- ON p.RESTAURANT_ID = c.RESTAURANT_ID;
--- COMMIT;
-
--- #2 Search Restaurant (Sub query)
--- #--------------------------
 START TRANSACTION;
 SELECT r.RESTAURANT_ID,
 	     r.RESTAURANT_NAME,
@@ -37,7 +16,31 @@ FROM restaurant AS r
 LEFT JOIN website AS w
 ON r.RESTAURANT_ID = w.RESTAURANT_ID
 LEFT JOIN phone AS p
+ON w.RESTAURANT_ID = p.RESTAURANT_ID
+LEFT JOIN category as c
+ON p.RESTAURANT_ID = c.RESTAURANT_ID;
+COMMIT;
+
+-- #2 Search Restaurant (Sub query)
+-- #--------------------------
+START TRANSACTION;
+SELECT r.RESTAURANT_ID,
+	     r.RESTAURANT_NAME,
+       r.ADDRESS,
+       r.CITY,
+       r.STATE,
+       r.ZIP_CODE,
+       p.PHONE,
+       w.WEBSITE,
+			 rt.CATEGORY,
+       r.PRICE_RATING
+FROM restaurant AS r
+LEFT JOIN website AS w
+ON r.RESTAURANT_ID = w.RESTAURANT_ID
+LEFT JOIN phone AS p
 ON w.RESTAURANT_ID = p.RESTAURANT_ID;
+LEFT JOIN category as c
+ON p.RESTAURANT_ID = c.RESTAURANT_ID;
 WHERE r.RESTAURANT_NAME = 'Calitacos' AND
 	  r.CITY = 'Orange' AND
       r.STATE = 'CA' AND
