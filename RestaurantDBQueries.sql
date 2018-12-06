@@ -76,7 +76,22 @@ COMMIT;
 
 #5. Display Restaurant Menus
 #---------------------------------
-#TBD
+--Prompt for restaurant ID
+SELECT r.RESTAURANT_ID,
+		r.RESTAURANT_NAME,
+		m.MENU_ID,
+        mi.ITEM_ID,
+        i.ITEM_NAME,
+        i.ITEM_PRICE
+FROM menu AS m
+INNER JOIN restaurant AS r
+ON m.RESTAURANT_ID = r.RESTAURANT_ID
+INNER JOIN menu_items AS mi
+ON m.MENU_ID = mi.MENU_ID
+INNER JOIN item AS i
+ON mi.ITEM_ID = i.ITEM_ID
+ORDER BY MENU_ID DESC
+WHERE RESTAURANT_ID = ?
 
 #6. Insert Restaurant
 #------------------------
@@ -137,7 +152,7 @@ START TRANSACTION;
 --set up box to capture RESTAURANT_ID
 INSERT INTO reviews (RATING_GIVEN, POSTED_REVIEW)
 VALUES(?,?)
---use get generated key
+--use get generated key to get review id
 INSERT INTO reviews_directory(RESTAURANT_ID, REVIEW_ID)
 VALUES(?, ?)
 COMMIT;
@@ -156,7 +171,7 @@ SELECT *
 FROM items
 COMMIT;
 
---alow user to look through table and add items
+--allow user to look through table and add items
 START TRANSACTION;
 INSERT INTO menu_items(MENU_ID, ITEM_ID)
 VALUES(?,?)
@@ -167,36 +182,6 @@ COMMIT;
 START TRANSACTION;
 UPDATE restaurant
 SET RESTAURANT_NAME = ?
-WHERE RESTAURANT_ID = ?
-COMMIT;
-
-START TRANSACTION;
-UPDATE restaurant
-SET ADDRESS = ?
-WHERE RESTAURANT_ID = ?
-COMMIT;
-
-START TRANSACTION;
-UPDATE restaurant
-SET CITY = ?
-WHERE RESTAURANT_ID = ?
-COMMIT;
-
-START TRANSACTION;
-UPDATE restaurant
-SET STATE = ?
-WHERE RESTAURANT_ID = ?
-COMMIT;
-
-START TRANSACTION;
-UPDATE restaurant
-SET PHONE = ?
-WHERE RESTAURANT_ID = ?
-COMMIT;
-
-START TRANSACTION;
-UPDATE restaurant
-SET PRICE_RATING = ?
 WHERE RESTAURANT_ID = ?
 COMMIT;
 
@@ -211,7 +196,7 @@ COMMIT;
 https://stackoverflow.com/questions/8563376/exporting-sql-query-result-to-a-csv-or-excel
 
 #21. Group by clause
-#Return 10 most frequent restaurants
+#Return 10 most frequent restaurant names
 START TRANSACTION;
 SELECT COUNT(RESTAURANT_ID) as Quantity, RESTAURANT_NAME
 FROM restaurant
