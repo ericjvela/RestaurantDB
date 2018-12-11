@@ -23,7 +23,7 @@ A relational database that stores information regarding restaurants with an easy
 ### Setup
 - Download NetBeans IDE
 - Click the Services tab > Databases and add connection (See schema file)
-- Add r2xml.jar and as Libraries
+- Add r2xml.jar and the MySQL connector as Libraries
 
 ### Project	Details:
 1. Print/display records	from	your	database/tables.
