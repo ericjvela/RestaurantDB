@@ -22,13 +22,11 @@ public class RestaurantCRUD extends javax.swing.JFrame {
     }
     
     private void DisplayTable() { 
-        String url = "jdbc:mysql://DESKTOP-Q1NBULV:3306/restaurant_db?zeroDateTimeBehavior=convertToNull";
-        String user = "charlie";
-        String password = "myPassword";
+    
         
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(Database.url, Database.user, Database.password);
             PreparedStatement pst = conn.prepareStatement("SELECT * FROM restaurant");
 
             ResultSet rs = pst.executeQuery();

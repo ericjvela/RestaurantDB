@@ -127,13 +127,11 @@ public class RestaurantInsertReview extends javax.swing.JFrame {
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
         // TODO add your handling code here:
         
-        String url = "jdbc:mysql://DESKTOP-Q1NBULV:3306/restaurant_db?zeroDateTimeBehavior=convertToNull";
-        String user = "charlie";
-        String password = "myPassword";
+      
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(Database.url, Database.user, Database.password);
             PreparedStatement pst = conn.prepareStatement("INSERT INTO reviews (RATING_GIVEN, POSTED_REVIEW)\n"
                     + "VALUES(?,?) ", Statement.RETURN_GENERATED_KEYS);
 

@@ -37,7 +37,7 @@ public class Export {
                     StringBuilder sb = new StringBuilder();
 
                     for (int i = 1; i <= numCols; i++) {
-                        sb.append(String.format(String.valueOf(rs.getString(i))) + '\t');
+                        sb.append(String.format(String.valueOf(rs.getString(i))) + ',');
 
                     }
                     resultSetArray.add(sb.toString());
@@ -62,6 +62,6 @@ public class Export {
          }
 
         fileWriter.close();
-
+        JOptionPane.showMessageDialog(null,"Successfully Exported to CSV");
     }
 }

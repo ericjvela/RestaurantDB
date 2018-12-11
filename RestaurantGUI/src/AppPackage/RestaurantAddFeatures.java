@@ -126,22 +126,20 @@ public class RestaurantAddFeatures extends javax.swing.JFrame {
 
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
         // TODO add your handling code here:
-        String url = "jdbc:mysql://DESKTOP-Q1NBULV:3306/restaurant_db?zeroDateTimeBehavior=convertToNull";
-        String user = "charlie";
-        String password = "myPassword";
+        
         
         Connection conn = null;
         
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(Database.url, Database.user, Database.password);
             
             conn.setAutoCommit(false);
             
             PreparedStatement pst = conn.prepareStatement
             ("UPDATE features SET " + jComboBox1.getSelectedItem().toString() +  " = ? WHERE RESTAURANT_ID = ?");
             
-            pst.setString(1, "N");
+            pst.setString(1, "Y");
             pst.setInt(2, Integer.valueOf(idField.getText()));
                     
             System.out.println(TAG + ": " + pst);
@@ -170,13 +168,11 @@ public class RestaurantAddFeatures extends javax.swing.JFrame {
 
     private void RemoveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveButtonActionPerformed
         // TODO add your handling code here:
-         String url = "jdbc:mysql://DESKTOP-Q1NBULV:3306/restaurant_db?zeroDateTimeBehavior=convertToNull";
-        String user = "charlie";
-        String password = "myPassword";
+        
         
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(Database.url, Database.user, Database.password);
             PreparedStatement pst = conn.prepareStatement
             ("UPDATE features SET " + jComboBox2.getSelectedItem().toString() +  " = ? WHERE RESTAURANT_ID = ?");
             

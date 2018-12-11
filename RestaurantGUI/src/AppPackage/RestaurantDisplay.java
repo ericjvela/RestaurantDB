@@ -33,15 +33,13 @@ public class RestaurantDisplay extends javax.swing.JFrame {
     }
     
     private void DisplayTable() { 
-        String url = "jdbc:mysql://DESKTOP-Q1NBULV:3306/restaurant_db?zeroDateTimeBehavior=convertToNull";
-        String user = "charlie";
-        String password = "myPassword";
+        
         
         Connection conn = null;
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(Database.url, Database.user, Database.password);
             conn.setAutoCommit(false);
             PreparedStatement pst = conn.prepareStatement(statement);
             for (int i = 1; i <= params.length; ++i)

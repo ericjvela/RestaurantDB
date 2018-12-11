@@ -123,22 +123,22 @@ public class RestaurantSearch extends javax.swing.JFrame {
         
         String query = "";
         query += "SELECT r.RESTAURANT_ID,\n"
-                + "	     r.RESTAURANT_NAME,\n"
+                + "	  r.RESTAURANT_NAME,\n"
                 + "       r.ADDRESS,\n"
                 + "       r.CITY,\n"
                 + "       r.STATE,\n"
                 + "       r.ZIP_CODE,\n"
                 + "       p.PHONE,\n"
                 + "       w.WEBSITE,\n"
-                + "			 c.CATEGORY,\n"
+                + "	  c.CATEGORY,\n"
                 + "       r.PRICE_RATING\n"
                 + "FROM restaurant AS r\n"
                 + "LEFT JOIN website AS w\n"
                 + "ON r.RESTAURANT_ID = w.RESTAURANT_ID\n"
                 + "LEFT JOIN phone AS p\n"
-                + "ON w.RESTAURANT_ID = p.RESTAURANT_ID\n"
+                + "ON r.RESTAURANT_ID = p.RESTAURANT_ID\n"
                 + "LEFT JOIN category as c\n"
-                + "ON p.RESTAURANT_ID = c.RESTAURANT_ID; ";
+                + "ON r.RESTAURANT_ID = c.RESTAURANT_ID ";
                 
         
         String query1 = "";

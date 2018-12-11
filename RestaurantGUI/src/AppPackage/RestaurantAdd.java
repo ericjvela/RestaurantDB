@@ -42,7 +42,6 @@ public class RestaurantAdd extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         CityTextField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        StateTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         PhoneTextField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -54,6 +53,7 @@ public class RestaurantAdd extends javax.swing.JFrame {
         CategoryTextField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         ZipCodeField = new javax.swing.JTextField();
+        StateTextField = new javax.swing.JComboBox<>();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -88,6 +88,8 @@ public class RestaurantAdd extends javax.swing.JFrame {
         jLabel9.setText("Category (Ex: Italian)");
 
         jLabel10.setText("Zip Code:");
+
+        StateTextField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NH", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,11 +130,11 @@ public class RestaurantAdd extends javax.swing.JFrame {
                             .addComponent(AddressTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                             .addComponent(RestaurantNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                             .addComponent(CityTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                            .addComponent(StateTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                             .addComponent(PhoneTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                             .addComponent(WebsiteTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                             .addComponent(CategoryTextField)
-                            .addComponent(ZipCodeField))))
+                            .addComponent(ZipCodeField)
+                            .addComponent(StateTextField, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -156,7 +158,7 @@ public class RestaurantAdd extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(StateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(11, 11, 11)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PhoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -186,15 +188,13 @@ public class RestaurantAdd extends javax.swing.JFrame {
 
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
         // TODO add your handling code here:
-        String url = "jdbc:mysql://DESKTOP-Q1NBULV:3306/restaurant_db?zeroDateTimeBehavior=convertToNull";
-        String user = "charlie";
-        String password = "myPassword";
+        
         
         Connection conn = null;
         
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(Database.url, Database.user, Database.password);
             conn.setAutoCommit(false);
             PreparedStatement pst = conn.prepareStatement
             ("INSERT INTO restaurant (RESTAURANT_NAME, ADDRESS, CITY, STATE, ZIP_CODE, PRICE_RATING) "
@@ -203,8 +203,24 @@ public class RestaurantAdd extends javax.swing.JFrame {
             pst.setString(1, RestaurantNameTextField.getText());
             pst.setString(2, AddressTextField.getText());
             pst.setString(3, CityTextField.getText());
-            pst.setString(4, StateTextField.getText());
+            pst.setString(4, StateTextField.getSelectedItem().toString());
             pst.setString(5, ZipCodeField.getText());
+            
+            
+            if (!SyntaxChecker.isValidAlpha(CityTextField.getText()))
+            {
+                throw new Exception("Not a valid City");
+            }
+            
+            if (!SyntaxChecker.isValidZip(ZipCodeField.getText()))
+            {
+                throw new Exception("Not a valid Zip");
+            }
+            
+            
+            
+            
+            
            
             
             String pr = PriceRatingComboBox.getSelectedItem().toString();
@@ -247,6 +263,14 @@ public class RestaurantAdd extends javax.swing.JFrame {
                     ("INSERT INTO phone (RESTAURANT_ID, PHONE) "
                         + "VALUES (?, ?);");
                 pst.setInt(1, generatedKeys.getInt(1));
+                
+                if (!SyntaxChecker.isValidPhone(PhoneTextField.getText()))
+                {
+                    System.out.println("NO");
+                    throw new Exception("Phone number not valid\n"
+                            + "ex: 555-555-5555");
+                }
+                
                 pst.setString(2, PhoneTextField.getText());
                 
                 pst.executeUpdate();
@@ -336,7 +360,7 @@ public class RestaurantAdd extends javax.swing.JFrame {
     private javax.swing.JTextField PhoneTextField;
     private javax.swing.JComboBox<String> PriceRatingComboBox;
     private javax.swing.JTextField RestaurantNameTextField;
-    private javax.swing.JTextField StateTextField;
+    private javax.swing.JComboBox<String> StateTextField;
     private javax.swing.JTextField WebsiteTextField;
     private javax.swing.JTextField ZipCodeField;
     private javax.swing.JLabel jLabel1;

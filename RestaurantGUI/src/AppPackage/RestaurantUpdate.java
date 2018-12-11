@@ -49,6 +49,8 @@ public class RestaurantUpdate extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         PriceRatingComboBox = new javax.swing.JComboBox<>();
         UpdateButton = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        ZipTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -87,6 +89,8 @@ public class RestaurantUpdate extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setText("Zip Code:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,36 +98,39 @@ public class RestaurantUpdate extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel8)
-                        .addComponent(jLabel7)
-                        .addComponent(RestaurantIDTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addComponent(CityTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel4)
-                        .addComponent(RestaurantNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addComponent(AddressTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
-                        .addComponent(StateTextField)
-                        .addComponent(PhoneTextField)
-                        .addComponent(WebsiteTextField))
-                    .addComponent(jLabel9)
-                    .addComponent(PriceRatingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(40, 40, 40)
-                    .addComponent(UpdateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(311, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(PriceRatingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel10)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(WebsiteTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                                .addComponent(PhoneTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(ZipTextField, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGap(0, 82, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(UpdateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(RestaurantIDTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                                .addComponent(jLabel2)
+                                .addComponent(CityTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(RestaurantNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                                .addComponent(jLabel5)
+                                .addComponent(AddressTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                                .addComponent(jLabel6)
+                                .addComponent(StateTextField)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,10 +153,14 @@ public class RestaurantUpdate extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(StateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ZipTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -162,14 +173,11 @@ public class RestaurantUpdate extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(PriceRatingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(616, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(UpdateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(33, 33, 33)))
+                    .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         pack();
@@ -182,31 +190,72 @@ public class RestaurantUpdate extends javax.swing.JFrame {
 
     private void UpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateButtonActionPerformed
         // TODO add your handling code here:
-        String url = "jdbc:mysql://DESKTOP-Q1NBULV:3306/restaurant_db?zeroDateTimeBehavior=convertToNull";
-        String user = "charlie";
-        String password = "myPassword";
+        Connection conn = null;
         
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(Database.url, Database.user, Database.password);
+            conn.setAutoCommit(false);
+
             PreparedStatement pst = conn.prepareStatement
-            ("UPDATE restaurant (RESTAURANT_NAME, ADDRESS, CITY, STATE, PHONE, WEBSITE, PRICE_RATING) VALUES (?, ?, ?, ?, ?, ?, ?) WHERE RESTAURANT_ID = ?");
+            ("UPDATE restaurant\n"
+                    + "SET RESTAURANT_NAME = ?,\n"
+                    + " 		ADDRESS = ?,\n"
+                    + " 		CITY = ?,\n"
+                    + " 		STATE = ?,\n"
+                    + " 		PRICE_RATING = ?,\n"
+                    + "                 ZIP_CODE = ?\n"
+                    + " WHERE RESTAURANT_ID = ?; "
+                    );
             pst.setString(1, RestaurantNameTextField.getText());
             pst.setString(2, AddressTextField.getText());
             pst.setString(3, CityTextField.getText());
             pst.setString(4, StateTextField.getText());
-            pst.setString(5, PhoneTextField.getText());
-            pst.setString(6, WebsiteTextField.getText());
+            pst.setString(6, ZipTextField.getText());
+//            pst.setString(5, PhoneTextField.getText());
+//            pst.setString(6, WebsiteTextField.getText());
             
             String pr = PriceRatingComboBox.getSelectedItem().toString();
-            pst.setString(7, pr);
+            pst.setString(5, pr);
             
-            pst.setString(8, RestaurantIDTextField.getText());
+            pst.setInt(7, Integer.valueOf(RestaurantIDTextField.getText()));
+            pst.executeUpdate();
+            
+            
+            pst = conn.prepareStatement
+            ("UPDATE phone\n"
+                    + "SET PHONE = ?\n"
+                    + "WHERE RESTAURANT_ID = ?;"
+                    );
+            
+            pst.setString(1, PhoneTextField.getText());
+            pst.setInt(2, Integer.valueOf(RestaurantIDTextField.getText()));
+            pst.executeUpdate();
+            
+             pst = conn.prepareStatement
+            ("UPDATE website\n"
+                    + "SET WEBSITE = ?\n"
+                    + "WHERE RESTAURANT_ID = ?; "
+                    );
+            
+            pst.setString(1, WebsiteTextField.getText());
+            pst.setInt(2, Integer.valueOf(RestaurantIDTextField.getText()));
             pst.executeUpdate();
             
             JOptionPane.showMessageDialog(null, "Updated Successfully.");
 
+            conn.commit();
             conn.close();
+        }
+        catch (SQLException se)
+        {
+            try{
+                if(conn != null)
+                    conn.rollback();
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+            JOptionPane.showMessageDialog(null,TAG + se);
         }
         catch (Exception e)
         {
@@ -260,7 +309,9 @@ public class RestaurantUpdate extends javax.swing.JFrame {
     private javax.swing.JTextField StateTextField;
     private javax.swing.JButton UpdateButton;
     private javax.swing.JTextField WebsiteTextField;
+    private javax.swing.JTextField ZipTextField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

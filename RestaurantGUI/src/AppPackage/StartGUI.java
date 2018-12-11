@@ -43,6 +43,7 @@ public class StartGUI extends javax.swing.JFrame {
         InserReviewButton = new javax.swing.JButton();
         DeleteRestaurantButton = new javax.swing.JButton();
         ShowReviewsButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -131,6 +132,14 @@ public class StartGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(ShowReviewsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, 180, 50));
+
+        jButton1.setText("10 Most Common Names");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 180, 50));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 830, 400));
 
         pack();
@@ -152,9 +161,9 @@ public class StartGUI extends javax.swing.JFrame {
                 + "LEFT JOIN website AS w\n"
                 + "ON r.RESTAURANT_ID = w.RESTAURANT_ID\n"
                 + "LEFT JOIN phone AS p\n"
-                + "ON w.RESTAURANT_ID = p.RESTAURANT_ID\n"
+                + "ON r.RESTAURANT_ID = p.RESTAURANT_ID\n"
                 + "LEFT JOIN category as c\n"
-                + "ON p.RESTAURANT_ID = c.RESTAURANT_ID;", new Param[0]);
+                + "ON r.RESTAURANT_ID = c.RESTAURANT_ID;", new Param[0]);
         RestaurantDisplay.setVisible(true);
     }//GEN-LAST:event_DisplayRecordsButtonActionPerformed
 
@@ -190,9 +199,7 @@ public class StartGUI extends javax.swing.JFrame {
 
     private void ExportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportButtonActionPerformed
         // TODO add your handling code here:
-        String url = "jdbc:mysql://DESKTOP-Q1NBULV:3306/restaurant_db?zeroDateTimeBehavior=convertToNull";
-        String user = "charlie";
-        String password = "myPassword";
+       
         
         Connection conn = null;
         
@@ -200,7 +207,7 @@ public class StartGUI extends javax.swing.JFrame {
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(Database.url, Database.user, Database.password);
             
             Export.printToCsv(Export.fetchDataFromDatabase(Query, conn), "Export.csv");
             
@@ -228,6 +235,17 @@ public class StartGUI extends javax.swing.JFrame {
         RestaurantShowReviews temp = new RestaurantShowReviews();
         temp.setVisible(true);
     }//GEN-LAST:event_ShowReviewsButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        // TODO add your handling code here:
+        
+        RestaurantDisplay RestaurantDisplay = new RestaurantDisplay("SELECT COUNT(RESTAURANT_ID) as Quantity, RESTAURANT_NAME\n"
+                + "FROM restaurant\n"
+                + "GROUP BY RESTAURANT_NAME, RESTAURANT_ID\n"
+                + "LIMIT 10;\n", new Param[0]);
+        RestaurantDisplay.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,6 +294,7 @@ public class StartGUI extends javax.swing.JFrame {
     private javax.swing.JButton ShowReviewsButton;
     private javax.swing.JButton UpdateFeaturesButton;
     private javax.swing.JButton UpdateRestaurantButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

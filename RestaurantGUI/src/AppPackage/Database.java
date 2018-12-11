@@ -10,6 +10,12 @@ package AppPackage;
  * @author itsch
  */
 public class Database {
+    
+    public static String url = "jdbc:mysql://DESKTOP-Q1NBULV:3306/restaurant_db?zeroDateTimeBehavior=convertToNull";
+    public static String user = "charlie";
+    public static String password = "myPassword";
+    
+    
     public static void insert(String query, Param[] params)
     {
     
