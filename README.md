@@ -2,17 +2,23 @@
 
 ## By: Eric Vela and Charlie Liu
 
-### Google Team Drive
-- https://drive.google.com/drive/folders/1N5ioazf93_8n1m5JWb0JGyBmbrlLGtWv?usp=sharing
+### Description:
+A relational database that stores information regarding restaurants with an easy-to-navigate user interface. For a full description see directory.
 
 ### Relational Database Diagram:
-- (Link)
+- See directory above
 
 ### Programs used:
 - NetBeans IDE (Java)
 - JDBC
 - MySQL
-- Python
+
+### Specs
+-RDBMS Key Constraints
+-Uses transactions (Commit & rollback)
+-Maintains transaction log
+-Uses RegEx to limit user input streams
+-Utilizes Faker to populate database with data
 
 ### Project	Details:
 1. Print/display records	from	your	database/tables.
