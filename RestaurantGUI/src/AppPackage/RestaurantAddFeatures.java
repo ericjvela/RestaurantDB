@@ -133,7 +133,8 @@ public class RestaurantAddFeatures extends javax.swing.JFrame {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(Database.url, Database.user, Database.password);
-            
+            Logger.append("Start: " + conn.toString());
+
             conn.setAutoCommit(false);
             
             PreparedStatement pst = conn.prepareStatement
@@ -143,10 +144,14 @@ public class RestaurantAddFeatures extends javax.swing.JFrame {
             pst.setInt(2, Integer.valueOf(idField.getText()));
                     
             System.out.println(TAG + ": " + pst);
+            Logger.append(pst.toString());
+
+
             pst.executeUpdate();
             
 
             conn.commit();
+            Logger.append("End: " + conn.toString());
             conn.close();
             JOptionPane.showMessageDialog(null, "Updated Successfully.");
         }
@@ -154,6 +159,7 @@ public class RestaurantAddFeatures extends javax.swing.JFrame {
         {
             try{
                 if(conn != null)
+                    Logger.append("Rollback: " + conn.toString());
                     conn.rollback();
             }catch(SQLException e){
                 System.out.println(e.getMessage());
@@ -162,6 +168,8 @@ public class RestaurantAddFeatures extends javax.swing.JFrame {
         }
         catch (Exception e)
         {
+            Logger.append(e);
+
             JOptionPane.showMessageDialog(null,TAG + e);
         }
     }//GEN-LAST:event_AddButtonActionPerformed
@@ -173,6 +181,9 @@ public class RestaurantAddFeatures extends javax.swing.JFrame {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(Database.url, Database.user, Database.password);
+            
+            Logger.append("Start: " + conn.toString());
+            
             PreparedStatement pst = conn.prepareStatement
             ("UPDATE features SET " + jComboBox2.getSelectedItem().toString() +  " = ? WHERE RESTAURANT_ID = ?");
             
@@ -180,14 +191,20 @@ public class RestaurantAddFeatures extends javax.swing.JFrame {
             pst.setInt(2, Integer.valueOf(idField.getText()));
                     
             System.out.println(TAG + ": " + pst);
+            
+            Logger.append(pst.toString());
+
             pst.executeUpdate();
             
 
+            Logger.append("End: " + conn.toString());
             conn.close();
             JOptionPane.showMessageDialog(null, "Updated Successfully.");
         }
         catch (Exception e)
         {
+            Logger.append(e);
+
             JOptionPane.showMessageDialog(null,TAG + e);
         }
                     

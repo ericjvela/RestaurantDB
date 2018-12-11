@@ -197,6 +197,7 @@ public class RestaurantUpdate extends javax.swing.JFrame {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(Database.url, Database.user, Database.password);
+            Logger.append("Start: " + conn.toString());
             conn.setAutoCommit(false);
 
             PreparedStatement pst = conn.prepareStatement
@@ -230,6 +231,8 @@ public class RestaurantUpdate extends javax.swing.JFrame {
             pst.setString(5, pr);
             
             pst.setInt(7, Integer.valueOf(RestaurantIDTextField.getText()));
+            Logger.append(pst.toString());
+
             pst.executeUpdate();
             
             
@@ -248,6 +251,8 @@ public class RestaurantUpdate extends javax.swing.JFrame {
             
             pst.setString(1, PhoneTextField.getText());
             pst.setInt(2, Integer.valueOf(RestaurantIDTextField.getText()));
+            Logger.append(pst.toString());
+
             pst.executeUpdate();
             
              pst = conn.prepareStatement
@@ -258,17 +263,23 @@ public class RestaurantUpdate extends javax.swing.JFrame {
             
             pst.setString(1, WebsiteTextField.getText());
             pst.setInt(2, Integer.valueOf(RestaurantIDTextField.getText()));
+            Logger.append(pst.toString());
+
             pst.executeUpdate();
             
             JOptionPane.showMessageDialog(null, "Updated Successfully.");
 
             conn.commit();
+            Logger.append("End: " + conn.toString());
+
             conn.close();
         }
         catch (SQLException se)
         {
             try{
                 if(conn != null)
+                    Logger.append("Rollback: " + conn.toString());
+
                     conn.rollback();
             }catch(SQLException e){
                 System.out.println(e.getMessage());
@@ -277,6 +288,8 @@ public class RestaurantUpdate extends javax.swing.JFrame {
         }
         catch (Exception e)
         {
+            Logger.append(e);
+
             JOptionPane.showMessageDialog(null,TAG + e);
         }
     }//GEN-LAST:event_UpdateButtonActionPerformed

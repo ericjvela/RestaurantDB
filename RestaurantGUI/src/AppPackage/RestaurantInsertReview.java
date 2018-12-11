@@ -127,18 +127,26 @@ public class RestaurantInsertReview extends javax.swing.JFrame {
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
         // TODO add your handling code here:
         
-      
+        Connection conn = null;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(Database.url, Database.user, Database.password);
-            PreparedStatement pst = conn.prepareStatement("INSERT INTO reviews (RATING_GIVEN, POSTED_REVIEW)\n"
-                    + "VALUES(?,?) ", Statement.RETURN_GENERATED_KEYS);
+            conn = DriverManager.getConnection(Database.url, Database.user, Database.password);
+            conn.setAutoCommit(false);
+            Logger.append("Start: " + conn.toString());
 
-            pst.setInt(1, RatingBar.getValue());
-            pst.setString(2, DescriptionText.getText());
+            PreparedStatement pst = conn.prepareStatement("INSERT INTO reviews_directory(RESTAURANT_ID)\n"
+                    + "VALUES(?)", Statement.RETURN_GENERATED_KEYS);
+//            PreparedStatement pst = conn.prepareStatement("INSERT INTO reviews (RATING_GIVEN, POSTED_REVIEW)\n"
+//                    + "VALUES(?,?) ", Statement.RETURN_GENERATED_KEYS);
+
+            pst.setInt(1, Integer.valueOf(idText.getText()));
+//            pst.setInt(1, RatingBar.getValue());
+//            pst.setString(2, DescriptionText.getText());
 
             // getting the ID of what was just inserted
+            Logger.append(pst.toString());
+
             int affectedRows = pst.executeUpdate();
             if (affectedRows == 0) {
                 throw new SQLException("Creating user failed, no rows affected.");
@@ -149,11 +157,13 @@ public class RestaurantInsertReview extends javax.swing.JFrame {
                 if (generatedKeys.next()) {
                     System.out.println(TAG + "Generated id: " + generatedKeys.getInt(1));
 
-                    //Insert into category
-                    pst = conn.prepareStatement("INSERT INTO reviews_directory(RESTAURANT_ID, REVIEW_ID)\n"
-                            + "VALUES(?, ?)");
-                    pst.setInt(1, Integer.valueOf(idText.getText()));
-                    pst.setInt(2, generatedKeys.getInt(1));
+                    pst = conn.prepareStatement("INSERT INTO reviews (REVIEW_ID, RATING_GIVEN, POSTED_REVIEW)\n"
+                                        + "VALUES(?,?, ?) ");
+                    pst.setInt(1, generatedKeys.getInt(1));
+                    pst.setInt(2, RatingBar.getValue());
+                    pst.setString(3, DescriptionText.getText());
+
+                    Logger.append(pst.toString());
 
                     pst.executeUpdate();
 
@@ -166,10 +176,27 @@ public class RestaurantInsertReview extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "Inserted Successfully.");
 
+            Logger.append("End: " + conn.toString());
+
+            conn.commit();
             conn.close();
             
             super.dispose();
-        } catch (Exception e) {
+        }
+        catch (SQLException se)
+        {
+            try{
+                if(conn != null)
+                    Logger.append("Rollback: " + conn.toString());
+
+                    conn.rollback();
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+            JOptionPane.showMessageDialog(null,TAG + se);
+        }catch (Exception e) {
+            Logger.append(e);
+
             JOptionPane.showMessageDialog(null, TAG + e);
         }
         

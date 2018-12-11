@@ -43,7 +43,9 @@ public class StartGUI extends javax.swing.JFrame {
         InserReviewButton = new javax.swing.JButton();
         DeleteRestaurantButton = new javax.swing.JButton();
         ShowReviewsButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        MostCommonButton = new javax.swing.JButton();
+        AddMenuItemsButton = new javax.swing.JButton();
+        AddItemsButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -133,13 +135,29 @@ public class StartGUI extends javax.swing.JFrame {
         });
         getContentPane().add(ShowReviewsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, 180, 50));
 
-        jButton1.setText("10 Most Common Names");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        MostCommonButton.setText("10 Most Common Names");
+        MostCommonButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                MostCommonButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 180, 50));
+        getContentPane().add(MostCommonButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 180, 50));
+
+        AddMenuItemsButton.setText("Add Items to Menu");
+        AddMenuItemsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddMenuItemsButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(AddMenuItemsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 180, 50));
+
+        AddItemsButton.setText("Add Items to database");
+        AddItemsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddItemsButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(AddItemsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 180, 50));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 830, 400));
 
         pack();
@@ -214,6 +232,8 @@ public class StartGUI extends javax.swing.JFrame {
         }
         catch(Exception e)
         {
+            Logger.append(e);
+
             JOptionPane.showMessageDialog(null,TAG + e);
         }
     }//GEN-LAST:event_ExportButtonActionPerformed
@@ -236,7 +256,7 @@ public class StartGUI extends javax.swing.JFrame {
         temp.setVisible(true);
     }//GEN-LAST:event_ShowReviewsButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void MostCommonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostCommonButtonActionPerformed
 
         // TODO add your handling code here:
         
@@ -245,7 +265,19 @@ public class StartGUI extends javax.swing.JFrame {
                 + "GROUP BY RESTAURANT_NAME, RESTAURANT_ID\n"
                 + "LIMIT 10;\n", new Param[0]);
         RestaurantDisplay.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_MostCommonButtonActionPerformed
+
+    private void AddMenuItemsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddMenuItemsButtonActionPerformed
+        // TODO add your handling code here:
+        RestaurantAddMenu temp = new RestaurantAddMenu();
+        temp.setVisible(true);
+    }//GEN-LAST:event_AddMenuItemsButtonActionPerformed
+
+    private void AddItemsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddItemsButtonActionPerformed
+        // TODO add your handling code here:
+        RestaurantAddItems temp = new RestaurantAddItems();
+        temp.setVisible(true);
+    }//GEN-LAST:event_AddItemsButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,17 +316,19 @@ public class StartGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddItemsButton;
+    private javax.swing.JButton AddMenuItemsButton;
     private javax.swing.JButton AddRestaurantButton;
     private javax.swing.JButton DeleteRestaurantButton;
     private javax.swing.JButton DisplayRecordsButton;
     private javax.swing.JButton ExportButton;
     private javax.swing.JButton InserReviewButton;
+    private javax.swing.JButton MostCommonButton;
     private javax.swing.JButton SearchRestaurantButton;
     private javax.swing.JButton ShowFeaturesButton;
     private javax.swing.JButton ShowReviewsButton;
     private javax.swing.JButton UpdateFeaturesButton;
     private javax.swing.JButton UpdateRestaurantButton;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

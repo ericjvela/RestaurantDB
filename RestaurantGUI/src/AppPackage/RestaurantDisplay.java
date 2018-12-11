@@ -85,6 +85,8 @@ public class RestaurantDisplay extends javax.swing.JFrame {
         }
         catch (Exception e)
         {
+            Logger.append(e);
+
             JOptionPane.showMessageDialog(null,TAG + e);
         }
     }

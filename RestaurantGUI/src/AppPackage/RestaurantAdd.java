@@ -196,6 +196,10 @@ public class RestaurantAdd extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(Database.url, Database.user, Database.password);
             conn.setAutoCommit(false);
+            
+            Logger.append("Start: " + conn.toString());
+            
+            
             PreparedStatement pst = conn.prepareStatement
             ("INSERT INTO restaurant (RESTAURANT_NAME, ADDRESS, CITY, STATE, ZIP_CODE, PRICE_RATING) "
                     + "VALUES (?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
@@ -226,6 +230,8 @@ public class RestaurantAdd extends javax.swing.JFrame {
             String pr = PriceRatingComboBox.getSelectedItem().toString();
             pst.setString(6, pr);
             
+            Logger.append(pst.toString());
+            
             // getting the ID of what was just inserted
             int affectedRows = pst.executeUpdate();
             if (affectedRows == 0) 
@@ -245,6 +251,7 @@ public class RestaurantAdd extends javax.swing.JFrame {
                 pst.setInt(1, generatedKeys.getInt(1));
                 pst.setString(2, CategoryTextField.getText());
                 
+                Logger.append(pst.toString());
                 pst.executeUpdate();
                 
                 //Insert into Features
@@ -255,7 +262,8 @@ public class RestaurantAdd extends javax.swing.JFrame {
                 {
                     pst.setString(i, "N");
                 }
-                
+                Logger.append(pst.toString());
+
                 pst.executeUpdate();
                 
                 //Insert into phone
@@ -273,6 +281,8 @@ public class RestaurantAdd extends javax.swing.JFrame {
                 
                 pst.setString(2, PhoneTextField.getText());
                 
+                Logger.append(pst.toString());
+
                 pst.executeUpdate();
                 
                 //Insert into website
@@ -282,9 +292,13 @@ public class RestaurantAdd extends javax.swing.JFrame {
                 pst.setInt(1, generatedKeys.getInt(1));
                 pst.setString(2, WebsiteTextField.getText());
                 
+                Logger.append(pst.toString());
+                System.out.println(conn.toString());
+
                 pst.executeUpdate();
                 
-               
+                
+            
                 
                 // TODO: Logging to file
             }
@@ -298,12 +312,17 @@ public class RestaurantAdd extends javax.swing.JFrame {
 
             conn.commit();
             
+            
+            Logger.append("End: " + conn.toString());
+            
             conn.close();
         }
         catch (SQLException se)
         {
             try{
                 if(conn != null)
+                    Logger.append("Rollback: " + conn.toString());
+
                     conn.rollback();
             }catch(SQLException e){
                 System.out.println(e.getMessage());
@@ -312,6 +331,7 @@ public class RestaurantAdd extends javax.swing.JFrame {
         }
         catch (Exception e)
         {
+            Logger.append(e);
             JOptionPane.showMessageDialog(null,TAG + e);
         }
         super.dispose();

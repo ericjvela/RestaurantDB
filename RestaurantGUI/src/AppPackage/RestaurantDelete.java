@@ -86,23 +86,29 @@ public class RestaurantDelete extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(Database.url, Database.user, Database.password);
+            Logger.append("Start: " + conn.toString());
+
             PreparedStatement pst = conn.prepareStatement("DELETE FROM restaurant\n"
                     + "WHERE RESTAURANT_ID = ?");
 
             pst.setInt(1, Integer.valueOf(jTextField1.getText()));
           
 
-        
+            Logger.append(pst.toString());
+
             pst.executeUpdate();
         
 
             JOptionPane.showMessageDialog(null, "Deleted Successfully.");
 
             
+            Logger.append("End: " + conn.toString());
             conn.close();
             
             super.dispose();
         } catch (Exception e) {
+            Logger.append(e);
+
             JOptionPane.showMessageDialog(null, TAG + e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
