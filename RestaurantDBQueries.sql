@@ -48,60 +48,60 @@ WHERE r.RESTAURANT_NAME = 'Calitacos' AND
       c.CATEGORY = 'Italian'
 COMMIT;
 
--- #3. Display Restaurant Features + category
--- #----------------------------
---
--- SELECT r.RESTAURANT_ID,
--- 	     r.RESTAURANT_NAME,
---          c.CATEGORY,
--- 			 f.ORDER_DELIVERY,
--- 	   f.ORDER_TAKEOUT,
--- 	   f.SERVES_ALCOHOL,
--- 	   f.KID_FRIENDLY,
--- 	   f.PET_FRIENDLY,
--- 	   f.INDOOR,
--- 	   f.OUTDOOR,
--- 	   f.TAKES_RESERVATIONS,
---      f.OFFERS_DEALS,
--- 		 f.ACCEPTS_CREDIT_CARDS,
--- 		 f.GOOD_FOR_KIDS,
--- 		 f.GOOD_FOR_GROUPS,
--- 		 f.WAITER_SERVICE,
--- 		 f.WHEELCHAIR_ACCESSIBLE,
--- 		 f.DOGS_ALLOWED,
--- 		 f.OFFERS_MILITARY_DISCOUNT,
--- 		 f.FULL_BAR,
--- 		 f.HAPPY_HOUR,
--- 		 f.SERVES_BREAKFAST,
--- 		 f.SERVES_BRUNCH,
--- 		 f.SERVES_LUNCH,
--- 		 f.SERVES_DINNER,
--- 		 f.SERVES_DESSERT,
--- 		 f.HAS_LIVE_MUSIC,
--- 		 f.STREET_PARKING,
--- 		 f.GARAGE_PARKING,
--- 		 f.VALET_PARKING,
--- 		 f.PRIVATE_LOT,
--- 		 f.FREE_WIFI,
--- 		 f.ALLOWS_SMOKING
--- FROM restaurant AS r
--- INNER JOIN features AS f
--- ON r.RESTAURANT_ID = f.RESTAURANT_ID
--- INNER JOIN category as c
--- ON r.RESTAURANT_ID = c.RESTAURANT_ID
--- WHERE r.RESTAURANT_ID = ?
+#3. Display Restaurant Features + category
+#----------------------------
 
--- #4. Display Reviews
--- #--------------------------------
--- START TRANSACTION;
--- SELECT rd.RESTAURANT_ID,
--- 	   rev.REVIEW_ID,
---        rev.RATING_GIVEN,
---        rev.POSTED_REVIEW
--- FROM reviews_directory AS rd
--- INNER JOIN reviews AS rev
--- ON rd.REVIEW_ID = rev.REVIEW_ID
--- COMMIT;
+SELECT r.RESTAURANT_ID,
+	     r.RESTAURANT_NAME,
+         c.CATEGORY,
+			 f.ORDER_DELIVERY,
+	   f.ORDER_TAKEOUT,
+	   f.SERVES_ALCOHOL,
+	   f.KID_FRIENDLY,
+	   f.PET_FRIENDLY,
+	   f.INDOOR,
+	   f.OUTDOOR,
+	   f.TAKES_RESERVATIONS,
+     f.OFFERS_DEALS,
+		 f.ACCEPTS_CREDIT_CARDS,
+		 f.GOOD_FOR_KIDS,
+		 f.GOOD_FOR_GROUPS,
+		 f.WAITER_SERVICE,
+		 f.WHEELCHAIR_ACCESSIBLE,
+		 f.DOGS_ALLOWED,
+		 f.OFFERS_MILITARY_DISCOUNT,
+		 f.FULL_BAR,
+		 f.HAPPY_HOUR,
+		 f.SERVES_BREAKFAST,
+		 f.SERVES_BRUNCH,
+		 f.SERVES_LUNCH,
+		 f.SERVES_DINNER,
+		 f.SERVES_DESSERT,
+		 f.HAS_LIVE_MUSIC,
+		 f.STREET_PARKING,
+		 f.GARAGE_PARKING,
+		 f.VALET_PARKING,
+		 f.PRIVATE_LOT,
+		 f.FREE_WIFI,
+		 f.ALLOWS_SMOKING
+FROM restaurant AS r
+INNER JOIN features AS f
+ON r.RESTAURANT_ID = f.RESTAURANT_ID
+INNER JOIN category as c
+ON r.RESTAURANT_ID = c.RESTAURANT_ID
+WHERE r.RESTAURANT_ID = ?
+
+#4. Display Reviews
+#--------------------------------
+START TRANSACTION;
+SELECT rd.RESTAURANT_ID,
+	   rev.REVIEW_ID,
+       rev.RATING_GIVEN,
+       rev.POSTED_REVIEW
+FROM reviews_directory AS rd
+INNER JOIN reviews AS rev
+ON rd.REVIEW_ID = rev.REVIEW_ID
+COMMIT;
 
 #5. Display Restaurant Menus
 #---------------------------------
@@ -260,4 +260,14 @@ GROUP BY RESTAURANT_NAME, RESTAURANT_ID
 LIMIT 10;
 COMMIT;
 
-#22. Include database views
+#22. Display Restaurant Menus
+SELECT r.RESTAURANT_ID,
+	   r.RESTAURANT_NAME,
+       mi.ITEM_ID,
+       i.ITEM_NAME,
+       i.ITEM_PRICE
+FROM restaurant AS r
+INNER JOIN menu_items AS mi
+ON r.RESTAURANT_ID = mi.RESTAURANT_ID
+INNER JOIN item as i
+ON mi.ITEM_ID = i.ITEM_ID
