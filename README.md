@@ -25,6 +25,25 @@ A relational database that stores information regarding restaurants with an easy
 - Click the Services tab > Databases and add connection (See schema file)
 - Add r2xml.jar and the MySQL connector as Libraries
 
+### Database Schema Explanation
+The "restaurant" table is the main parent table in this database as outlined by the coloring in the database diagram. The RESTAURANT_ID is used across most of the other tables wihtin the database and acts as a unique identifer for any restaurant.
+
+The "category" table is setup such that one restaurant can have multiple different types of food served. Thus, a Japanese restaurant can have "Asian", "Seafood", and "Japanese" as their categories.
+
+The "phone" table is setup to maintain 3rd normal form.
+
+The "website" table is setup to maintain 3rd normal form.
+
+The "features" table is an extension of the restaurant table because only one restaurant has its own set of features.
+
+The "reviews_directory" can have multiple reviews (REVIEW_ID) for the same restaurant (RESTAURANT_ID).
+
+The "reviews" table shows all of the reviews given.
+
+The "menu_items" table is a directory such that items from the "item" table can be added to a restaurant menu. A restaurant can only have one menu.
+
+The "item" table holds all of the possible items that can be added to a menu in "menu_items."
+
 ### Project	Details:
 1. Print/display records	from	your	database/tables.
 2. Query for	data/results	with	various	parameters/filters
