@@ -20,12 +20,14 @@ A relational database that stores information regarding restaurants with an easy
 - Uses RegEx to limit user input streams
 - Utilizes Faker to populate database with data
 - Export main table (restaurant) as CSV
--- In RestaurantGUI file as "Export.csv"
+- --In RestaurantGUI file as "Export.csv"
 
 ### Setup
 - Download NetBeans IDE
+- Open Project Folder and select "RestaurantGUI" from the repo
 - Click the Services tab > Databases and add connection (See schema file)
 - Add r2xml.jar and the MySQL connector as Libraries
+- Run faker file in restaurant_faker > src > Main.java to generate some fake data
 
 ### Database Schema
 - See directory above
