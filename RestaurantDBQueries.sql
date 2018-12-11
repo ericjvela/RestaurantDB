@@ -122,82 +122,82 @@ ON mi.ITEM_ID = i.ITEM_ID
 ORDER BY MENU_ID DESC
 WHERE RESTAURANT_ID = ?
 
--- #6. Insert Restaurant
--- #--------------------------------------
--- INSERT INTO restaurant(RESTAURANT_NAME,
--- 												ADDRESS,
---                         CITY,
---                         STATE,
---                         PRICE_RATING)
--- VALUES(?,?,?,?,?)
--- #use get generated key
--- INSERT INTO website(RESTAURANT_ID, WEBSITE)
--- VALUES (?, ?)
---
--- #use same geenrated key
--- INSERT INTO phone(RESTAURANT_ID, PHONE)
--- VALUES(?,?)
--- START TRANSACTION;
--- INSERT INTO restaurant(
--- 											RESTAURANT_NAME,
--- 											ADDRESS,
--- 											CITY,
--- 											STATE,
--- 											PHONE,
--- 											WEBSITE,
--- 											PRICE_RATING
--- 											)
--- VALUES(?,?,?,?,?,?,?)
--- COMMIT;
+#6. Insert Restaurant
+#--------------------------------------
+INSERT INTO restaurant(RESTAURANT_NAME,
+												ADDRESS,
+                        CITY,
+                        STATE,
+                        PRICE_RATING)
+VALUES(?,?,?,?,?)
+#use get generated key
+INSERT INTO website(RESTAURANT_ID, WEBSITE)
+VALUES (?, ?)
+
+#use same geenrated key
+INSERT INTO phone(RESTAURANT_ID, PHONE)
+VALUES(?,?)
+START TRANSACTION;
+INSERT INTO restaurant(
+											RESTAURANT_NAME,
+											ADDRESS,
+											CITY,
+											STATE,
+											PHONE,
+											WEBSITE,
+											PRICE_RATING
+											)
+VALUES(?,?,?,?,?,?,?)
+COMMIT;
 
 
--- #7. Insert Restaurant features/
--- START TRANSACTION;
--- INSERT INTO features(
--- 					 					 ORDER_DELIVERY,
---                      ORDER_TAKEOUT,
---                      SERVES_ALCOHOL,
---                      KID_FRIENDLY,
---                      PET_FRIENDLY,
---                      INDOOR,
---                      OUTDOOR,
---                      TAKES_RESERVATIONS,
--- 										 OFFERS_DEALS,
--- 										 ACCEPTS_CREDIT_CARDS,
--- 										 GOOD_FOR_KIDS,
--- 										 GOOD_FOR_GROUPS,
--- 										 WAITER_SERVICE,
--- 										 WHEELCHAIR_SERVICE,
--- 										 WHEELCHAIR_ACCESSIBLE,
--- 										 DOGS_ALLOWED,
--- 										 OFFERS_MILITARY_DISCOUNT,
--- 										 FULL_BAR,
--- 										 HAPPY_HOUR,
--- 										 SERVES_BREAKFAST,
--- 										 SERVES_BRUNCH,
--- 										 SERVES_LUNCH,
--- 										 SERVES_DINNER,
--- 										 SERVES_DESERT,
--- 										 HAS_LIVE_MUSIC,
--- 										 STREET_PARKING,
--- 										 GARAGE_PARKING,
--- 										 VALET_PARKING,
--- 										 PRIVATE_LOT,
--- 										 FREE_WIFI,
--- 										 ALLOWS_SMOKING
--- VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
--- COMMIT;
+#7. Insert Restaurant features/
+START TRANSACTION;
+INSERT INTO features(
+					 					 ORDER_DELIVERY,
+                     ORDER_TAKEOUT,
+                     SERVES_ALCOHOL,
+                     KID_FRIENDLY,
+                     PET_FRIENDLY,
+                     INDOOR,
+                     OUTDOOR,
+                     TAKES_RESERVATIONS,
+										 OFFERS_DEALS,
+										 ACCEPTS_CREDIT_CARDS,
+										 GOOD_FOR_KIDS,
+										 GOOD_FOR_GROUPS,
+										 WAITER_SERVICE,
+										 WHEELCHAIR_SERVICE,
+										 WHEELCHAIR_ACCESSIBLE,
+										 DOGS_ALLOWED,
+										 OFFERS_MILITARY_DISCOUNT,
+										 FULL_BAR,
+										 HAPPY_HOUR,
+										 SERVES_BREAKFAST,
+										 SERVES_BRUNCH,
+										 SERVES_LUNCH,
+										 SERVES_DINNER,
+										 SERVES_DESERT,
+										 HAS_LIVE_MUSIC,
+										 STREET_PARKING,
+										 GARAGE_PARKING,
+										 VALET_PARKING,
+										 PRIVATE_LOT,
+										 FREE_WIFI,
+										 ALLOWS_SMOKING
+VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+COMMIT;
 
--- #9. Insert Review
---
--- START TRANSACTION;
--- --set up box to capture RESTAURANT_ID
--- INSERT INTO reviews (RATING_GIVEN, POSTED_REVIEW)
--- VALUES(?,?)
--- --use get generated key to get review id
--- INSERT INTO reviews_directory(RESTAURANT_ID, REVIEW_ID)
--- VALUES(?, ?)
--- COMMIT;
+#9. Insert Review
+
+START TRANSACTION;
+--set up box to capture RESTAURANT_ID
+INSERT INTO reviews (RATING_GIVEN, POSTED_REVIEW)
+VALUES(?,?)
+--use get generated key to get review id
+INSERT INTO reviews_directory(RESTAURANT_ID, REVIEW_ID)
+VALUES(?, ?)
+COMMIT;
 
 #10. Insert Menu (acknowledging the items table has all of the listed items needed
 --prompt for restaurant_id of the restaurant they wish to add a menu to
@@ -219,37 +219,37 @@ INSERT INTO menu_items(MENU_ID, ITEM_ID)
 VALUES(?,?)
 COMMIT;
 
--- #11. Update Restaurant
---
--- START TRANSACTION;
--- UPDATE restaurant
--- SET RESTAURANT_NAME = ?,
--- 		ADDRESS = ?,
--- 		CITY = ?,
--- 		STATE = ?,
--- 		PRICE_RATING = ?
--- WHERE RESTAURANT_ID = ?
---
---
--- UPDATE website
--- SET WEBSITE = ?
--- WHERE RESTAURANT_ID = ?
---
--- UPDATE phone
--- SET PHONE = ?
--- WHERE RESTAURANT_ID = ?
---
--- COMMIT;
+#11. Update Restaurant
+
+START TRANSACTION;
+UPDATE restaurant
+SET RESTAURANT_NAME = ?,
+		ADDRESS = ?,
+		CITY = ?,
+		STATE = ?,
+		PRICE_RATING = ?
+WHERE RESTAURANT_ID = ?
 
 
--- #15. Delete Restaurant
--- START TRANSACTION;
--- DELETE FROM restaurant
--- WHERE RESTAURANT_ID = ?
--- COMMIT;
+UPDATE website
+SET WEBSITE = ?
+WHERE RESTAURANT_ID = ?
 
--- #20. Export as csv
--- https://stackoverflow.com/questions/8563376/exporting-sql-query-result-to-a-csv-or-excel
+UPDATE phone
+SET PHONE = ?
+WHERE RESTAURANT_ID = ?
+
+COMMIT;
+
+
+#15. Delete Restaurant
+START TRANSACTION;
+DELETE FROM restaurant
+WHERE RESTAURANT_ID = ?
+COMMIT;
+
+#20. Export as csv
+https://stackoverflow.com/questions/8563376/exporting-sql-query-result-to-a-csv-or-excel
 
 #21. Group by clause
 #Return 10 most frequent restaurant names
