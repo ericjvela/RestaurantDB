@@ -40,7 +40,7 @@ public class Main
                 pst.setString(1, faker.company().name());
                 pst.setString(2, faker.address().streetAddress());
                 pst.setString(3, faker.address().city());
-                pst.setString(4, faker.address().state());
+                pst.setString(4, faker.address().stateAbbr());
                 pst.setString(5, faker.address().zipCode());
 
                 Random rand = new Random();

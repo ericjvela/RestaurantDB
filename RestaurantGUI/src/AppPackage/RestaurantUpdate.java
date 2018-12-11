@@ -41,7 +41,6 @@ public class RestaurantUpdate extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         AddressTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        StateTextField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         PhoneTextField = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -51,6 +50,7 @@ public class RestaurantUpdate extends javax.swing.JFrame {
         UpdateButton = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         ZipTextField = new javax.swing.JTextField();
+        StateTextField = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -91,6 +91,8 @@ public class RestaurantUpdate extends javax.swing.JFrame {
 
         jLabel10.setText("Zip Code:");
 
+        StateTextField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NH", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,18 +100,6 @@ public class RestaurantUpdate extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(PriceRatingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel10)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(WebsiteTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
-                                .addComponent(PhoneTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(ZipTextField, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addGap(0, 82, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -128,9 +118,21 @@ public class RestaurantUpdate extends javax.swing.JFrame {
                                 .addComponent(RestaurantNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                                 .addComponent(jLabel5)
                                 .addComponent(AddressTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
-                                .addComponent(jLabel6)
-                                .addComponent(StateTextField)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jLabel6)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(PriceRatingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel10)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(StateTextField, javax.swing.GroupLayout.Alignment.LEADING, 0, 237, Short.MAX_VALUE)
+                                .addComponent(WebsiteTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(PhoneTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(ZipTextField, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGap(0, 82, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,10 +212,19 @@ public class RestaurantUpdate extends javax.swing.JFrame {
             pst.setString(1, RestaurantNameTextField.getText());
             pst.setString(2, AddressTextField.getText());
             pst.setString(3, CityTextField.getText());
-            pst.setString(4, StateTextField.getText());
+            pst.setString(4, StateTextField.getSelectedItem().toString());
             pst.setString(6, ZipTextField.getText());
 //            pst.setString(5, PhoneTextField.getText());
 //            pst.setString(6, WebsiteTextField.getText());
+
+            if (!SyntaxChecker.isValidAlpha(CityTextField.getText())) {
+                throw new Exception("Not a valid City");
+            }
+
+            if (!SyntaxChecker.isValidZip(ZipTextField.getText())) {
+                throw new Exception("Not a valid Zip");
+            }
+
             
             String pr = PriceRatingComboBox.getSelectedItem().toString();
             pst.setString(5, pr);
@@ -227,6 +238,13 @@ public class RestaurantUpdate extends javax.swing.JFrame {
                     + "SET PHONE = ?\n"
                     + "WHERE RESTAURANT_ID = ?;"
                     );
+            
+            if (!SyntaxChecker.isValidPhone(PhoneTextField.getText()))
+                {
+                    System.out.println("NO");
+                    throw new Exception("Phone number not valid\n"
+                            + "ex: 555-555-5555");
+                }
             
             pst.setString(1, PhoneTextField.getText());
             pst.setInt(2, Integer.valueOf(RestaurantIDTextField.getText()));
@@ -306,7 +324,7 @@ public class RestaurantUpdate extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> PriceRatingComboBox;
     private javax.swing.JTextField RestaurantIDTextField;
     private javax.swing.JTextField RestaurantNameTextField;
-    private javax.swing.JTextField StateTextField;
+    private javax.swing.JComboBox<String> StateTextField;
     private javax.swing.JButton UpdateButton;
     private javax.swing.JTextField WebsiteTextField;
     private javax.swing.JTextField ZipTextField;
