@@ -19,6 +19,8 @@ A relational database that stores information regarding restaurants with an easy
 - Maintains transaction log
 - Uses RegEx to limit user input streams
 - Utilizes Faker to populate database with data
+- Export main table (restaurant) as CSV
+-- In RestaurantGUI file as "Export.csv"
 
 ### Setup
 - Download NetBeans IDE
