@@ -14,17 +14,22 @@ A relational database that stores information regarding restaurants with an easy
 - MySQL
 
 ### Specs
--RDBMS Key Constraints
--Uses transactions (Commit & rollback)
--Maintains transaction log
--Uses RegEx to limit user input streams
--Utilizes Faker to populate database with data
+- RDBMS Key Constraints
+- Uses transactions (Commit & rollback)
+- Maintains transaction log
+- Uses RegEx to limit user input streams
+- Utilizes Faker to populate database with data
+
+### Setup
+- Download NetBeans IDE
+- Click the Services tab > Databases and add connection (See schema file)
+- Add r2xml.jar and as Libraries
 
 ### Project	Details:
 1. Print/display records	from	your	database/tables.
 2. Query for	data/results	with	various	parameters/filters
 3. Create	a	new	record
-4. Delete	records	(soft	delete	function	would	be	ideal)
+4. Delete	records	(soft	delete function	would	be	ideal)
 5. Update	records
 6. Make	use	of	transactions	(commit	&	rollback)
 7. Generate	reports	that	can	be	exported	(excel	or	csv	format)
