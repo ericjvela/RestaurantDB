@@ -25,6 +25,9 @@ A relational database that stores information regarding restaurants with an easy
 - Click the Services tab > Databases and add connection (See schema file)
 - Add r2xml.jar and the MySQL connector as Libraries
 
+### Database Schema
+- See directory above
+
 ### Database Schema Explanation
 The "restaurant" table is the main parent table in this database as outlined by the coloring in the database diagram. The RESTAURANT_ID is used across most of the other tables wihtin the database and acts as a unique identifer for any restaurant.
 
